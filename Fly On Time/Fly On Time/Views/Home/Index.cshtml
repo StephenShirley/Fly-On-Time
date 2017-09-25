@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/Home/APIcalls.js"></script>
+<link href="~/Content/Home.css" rel="stylesheet" />
+
+@*<div id="topBar" class="row">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" id="shortcodeInput" class="form-control" placeholder="Enter Airport Shortcode...">
+            <span class="input-group-btn">
+                <button id="searchBtn" class="btn btn-secondary" type="button">Go!</button>
+            </span>
+        </div>
+    </div>
+</div>
+<hr />*@
+
+<div id="fsScheduleInputs">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="fsScheduleAirCode">Airline Code</label>
+                <input type="text" id="fsScheduleAirCode" class="form-control" placeholder="Enter airline code">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="fsScheduleFN">Flight Number</label>
+                <input type="text" id="fsScheduleFN" class="form-control" placeholder="Flight Number">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="fsScheduleMonth">Flight Month</label>
+                <input type="text" id="fsScheduleMonth" class="form-control" placeholder="Month">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="fsScheduleDay">Flight Day</label>
+                <input type="text" id="fsScheduleDay" class="form-control" placeholder="Day">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="fsScheduleYear">Flight Year</label>
+                <input type="text" id="fsScheduleYear" class="form-control" placeholder="Year">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <button id="submitBtn" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <p id="displayBox"></p>
+    </div>
+</div>
