@@ -34,6 +34,18 @@ namespace Fly_On_Time.Controllers
             return Json(information, JsonRequestBehavior.AllowGet);
         }
 
+        
+        public JsonResult getWeatherByCoordinates(string latitude, string longitude)
+        {
+            string requestUrl = ApiKeys.owmAppURL + "/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + ApiKeys.owmAppKey;
+            //requestUrl = System.Web.HttpUtility.UrlEncode(requestUrl);
+
+            WebClient client = new WebClient();
+            string information = client.DownloadString(requestUrl);
+
+            return Json(information, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

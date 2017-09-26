@@ -19,6 +19,8 @@ var displayInfo = function (info, type, index) {
 
 var displayFlightSchedule = function (info) {
     var infoObj = JSON.parse(info);
+    var airport = infoObj.appendix.airports[0];
+    displayWeatherInfo(airport.latitude, airport.longitude);
     $.each(infoObj.scheduledFlights, function (index, val) {
 
         $('#displayBox').append('<hr />');
@@ -36,10 +38,18 @@ var displayFlightSchedule = function (info) {
         $('#displayBox').append('<h5>Arrival Airport</h5>');
         $('#displayBox').append('<span id="aFlight' + index + '"></span>');
         getTsaCheckpoint(val.arrivalAirportFsCode, "a",index);
-
-
     })
+}
 
+
+var displayWeatherInfo = function (latitude, longitude) {
+    var coordinates = { latitude: latitude, longitude: longitude };
+    $.get("/Home/getWeatherByCoordinates", coordinates, function (data, textStatus, XQHR) {
+        console.log(data);
+
+    }).error(function (data, text) {
+        console.log(data);
+    });
 
 }
 
