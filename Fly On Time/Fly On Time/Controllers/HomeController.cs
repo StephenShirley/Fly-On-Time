@@ -37,7 +37,7 @@ namespace Fly_On_Time.Controllers
         
         public JsonResult getWeatherByCoordinates(string latitude, string longitude)
         {
-            string requestUrl = ApiKeys.owmAppURL + "/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + ApiKeys.owmAppKey;
+            string requestUrl = ApiKeys.owmAppURL + "/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + ApiKeys.owmAppKey + "&units=imperial";
             //requestUrl = System.Web.HttpUtility.UrlEncode(requestUrl);
 
             WebClient client = new WebClient();
