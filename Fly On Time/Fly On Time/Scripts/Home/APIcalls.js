@@ -17,22 +17,7 @@ var displayInfo = function (info, type, index) {
     }
 }
 
-var displayStatusInfo = function (info, type, index) {
-    //Check that there is actually info
-    var airportResources = info.airportResources;
-    if (airportResources != undefined) {
-        $('#' + type + 'Flight' + index).append('<p><ul>')
-        $('#' + type + 'Flight' + index).append('<li><strong>Departure Gate</strong>: ' + airportResources.departureGate + '</li>');
-        $('#' + type + 'Flight' + index).append('</ul></p>')
-    }
-    else {
-        $('#' + type + 'Flight' + index).append('<strong>Not Available</strong>')
-    }
-
-};
-
-
-var displayFlightSchedule = function (info) {
+var displayFlightSchedule = function (info, userInput) {
     var infoObj = JSON.parse(info);
     var airport = infoObj.appendix.airports[0];
     //displayWeatherInfo(airport.latitude, airport.longitude);
@@ -79,16 +64,11 @@ var getFlightStatus = function (input, type, index) {
 
         displayStatusInfo(jsonData.flightStatuses[0], type, index);
 
-<<<<<<< HEAD
     }).error(function (data, text) {
         console.log(data);
     });
 }
-var displayWeatherInfo = function (latitude, longitude) {
-    var coordinates = { latitude: latitude, longitude: longitude };
-    $.get("/Home/getWeatherByCoordinates", coordinates, function (data, textStatus, XQHR) {
-        console.log("Weather Info: " + data);
-=======
+
 var displayWeatherInfo = function (latitude, longitude, type, index) {
     var coordinates = { latitude: latitude, longitude: longitude };
     $.get("/Home/getWeatherByCoordinates", coordinates, function (data, textStatus, XQHR) {
@@ -99,7 +79,6 @@ var displayWeatherInfo = function (latitude, longitude, type, index) {
         $('#' + type + 'Flight' + index).append('<li><strong>Current Weather</strong>: ' + weatherCondObj.main + '</li>');
         $('#' + type + 'Flight' + index).append('<li><strong>Current Temperature</strong>: ' + temperatureObj.temp + ' Farenheit</li>');
 
->>>>>>> master
 
     }).error(function (data, text) {
         console.log(data);
@@ -117,7 +96,7 @@ var getFlightSchedule = function () {
 
     $.get("/Home/getFlightSchedule", output, function (data, textStatus, XQHR) {
         console.log(data);
-        displayFlightSchedule(data);
+        displayFlightSchedule(data, output);
 
 
     }).error(function (data, text) {
