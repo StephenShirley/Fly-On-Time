@@ -123,6 +123,9 @@
   <data name="fsAppKey" xml:space="preserve">
     <value>cba6680ba0187670fc07b04f0ee3b57d</value>
   </data>
+  <data name="fsFlightStatusByArrivalDate" xml:space="preserve">
+    <value>https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/</value>
+  </data>
   <data name="fsScheduledFlightsByCarrierFNDate" xml:space="preserve">
     <value>https://api.flightstats.com/flex/schedules/rest/v1/json/flight/</value>
   </data>

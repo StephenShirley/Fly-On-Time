@@ -34,6 +34,15 @@ namespace Fly_On_Time.Controllers
             return Json(information, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult getFlightStatus(string airCode, string fn, string year, string month, string day, string airportSC)
+        {
+            //requestUrl = System.Web.HttpUtility.UrlEncode(requestUrl); 
+            string requestUrl = ApiKeys.fsFlightStatusByArrivalDate + airCode + "/" + fn + "/arr/" + year + "/" + month + "/" + day + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey + "&utc=true&airport=" + airportSC;
+
+            WebClient client = new WebClient();
+            string information = client.DownloadString(requestUrl); 
+            return Json(information, JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult getWeatherByCoordinates(string latitude, string longitude)
         {

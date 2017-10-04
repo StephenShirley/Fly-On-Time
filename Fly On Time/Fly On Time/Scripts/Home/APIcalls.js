@@ -50,17 +50,42 @@ var displayFlightSchedule = function (info) {
         $('#displayBox').append('<span id="dFlight' + index + '"></span>');
         getTsaCheckpoint(val.departureAirportFsCode, "d", index);
 
+        userInput.airportSC = val.departureAirportFsCode;
+        getFlightStatus(userInput, "d", index);
+
+
         $('#displayBox').append('<h5>Arrival Airport</h5>');
         $('#displayBox').append('<span id="aFlight' + index + '"></span>');
         getTsaCheckpoint(val.arrivalAirportFsCode, "a",index);
     })
 }
+var displayStatusInfo = function (info, type, index) {
+    //Check that there is actually info 
+    var airportResources = info.airportResources;
+    if (airportResources != undefined) {
+        $('#' + type + 'Flight' + index).append('<p><ul>')
+        $('#' + type + 'Flight' + index).append('<li><strong>Departure Gate</strong>: ' + airportResources.departureGate + '</li>');
+        $('#' + type + 'Flight' + index).append('</ul></p>')
+    }
+    else {
+        $('#' + type + 'Flight' + index).append('<strong>Not Available</strong>')
+    }
+}
+var getFlightStatus = function (input, type, index) {
+    $.get("/Home/getFlightStatus", input, function (data, textStatus, XQHR) {
+        console.log("Flight status: " + data);
+        var jsonData = JSON.parse(data);
 
+        displayStatusInfo(jsonData.flightStatuses[0], type, index);
 
+    }).error(function (data, text) {
+        console.log(data);
+    });
+}
 var displayWeatherInfo = function (latitude, longitude) {
     var coordinates = { latitude: latitude, longitude: longitude };
     $.get("/Home/getWeatherByCoordinates", coordinates, function (data, textStatus, XQHR) {
-        console.log(data);
+        console.log("Weather Info: " + data);
 
     }).error(function (data, text) {
         console.log(data);

@@ -79,6 +79,15 @@ namespace Fly_On_Time.Utilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/.
+        /// </summary>
+        internal static string fsFlightStatusByArrivalDate {
+            get {
+                return ResourceManager.GetString("fsFlightStatusByArrivalDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.flightstats.com/flex/schedules/rest/v1/json/flight/.
         /// </summary>
         internal static string fsScheduledFlightsByCarrierFNDate {
