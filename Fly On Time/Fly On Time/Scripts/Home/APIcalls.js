@@ -17,6 +17,21 @@ var displayInfo = function (info, type, index) {
     }
 }
 
+var displayStatusInfo = function (info, type, index) {
+    //Check that there is actually info
+    var airportResources = info.airportResources;
+    if (airportResources != undefined) {
+        $('#' + type + 'Flight' + index).append('<p><ul>')
+        $('#' + type + 'Flight' + index).append('<li><strong>Departure Gate</strong>: ' + airportResources.departureGate + '</li>');
+        $('#' + type + 'Flight' + index).append('</ul></p>')
+    }
+    else {
+        $('#' + type + 'Flight' + index).append('<strong>Not Available</strong>')
+    }
+
+};
+
+
 var displayFlightSchedule = function (info) {
     var infoObj = JSON.parse(info);
     var airport = infoObj.appendix.airports[0];

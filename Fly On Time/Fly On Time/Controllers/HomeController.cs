@@ -12,7 +12,7 @@ namespace Fly_On_Time.Controllers
     {
         public ActionResult Index()
         {
-            
+
             return View();
         }
 
@@ -23,7 +23,7 @@ namespace Fly_On_Time.Controllers
 
             return Json(information, JsonRequestBehavior.AllowGet);
         }
-        
+
         public JsonResult getFlightSchedule(string airCode, string fn, string year, string month, string day)
         {
             string requestUrl = ApiKeys.fsScheduledFlightsByCarrierFNDate + airCode + "/" + fn + "/departing/" + year + "/" + month + "/" + day + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey;
@@ -34,7 +34,7 @@ namespace Fly_On_Time.Controllers
             return Json(information, JsonRequestBehavior.AllowGet);
         }
 
-        
+
         public JsonResult getWeatherByCoordinates(string latitude, string longitude)
         {
             string requestUrl = ApiKeys.owmAppURL + "/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + ApiKeys.owmAppKey;
