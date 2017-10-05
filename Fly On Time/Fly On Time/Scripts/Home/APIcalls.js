@@ -5,12 +5,12 @@
 var displayWeatherInfo = function (latitude, longitude, type, index) {
     var coordinates = { latitude: latitude, longitude: longitude };
     $.get("/Home/getWeatherByCoordinates", coordinates, function (data, textStatus, XQHR) {
-        console.log(data);
         var weatherObj = JSON.parse(data);
         var weatherCondObj = weatherObj.weather[0];
         var temperatureObj = weatherObj.main;
-        $('#' + type + 'Flight' + index).append('<li><strong>Current Weather</strong>: ' + weatherCondObj.main + '</li>');
-        $('#' + type + 'Flight' + index).append('<li><strong>Current Temperature</strong>: ' + temperatureObj.temp + ' Farenheit</li>');
+
+        $('#' + type + 'Weather' + index).append(weatherCondObj.main);
+        $('#' + type + 'Temp' + index).append(temperatureObj.temp);
 
 
     }).error(function (data, text) {
@@ -42,7 +42,6 @@ var getFlightSchedule = function () {
     var output = { airCode: airCode, fn: fn, year: year, month: month, day: day };
 
     $.get("/Home/getFlightSchedule", output, function (data, textStatus, XQHR) {
-        console.log(data);
         constructLayout(data, output);
 
 
@@ -54,8 +53,6 @@ var getFlightSchedule = function () {
 
 var getTsaCheckpoint = function (shortcodeInput, type, index) {
     $.get("/Home/getTsaCheckpoint", { shortcode: shortcodeInput }, function (data, textStatus, XQHR) {
-        console.log(data);
-        console.log(textStatus);
         displayInfo(data, type, index);
 
     }).error(function (data, text) {
@@ -82,9 +79,27 @@ var constructLayout = function (flights, flightInfo) {
                         '<li><strong>Arrival Time</strong>: ' + val.arrivalTime + '</li>' +
                     '</ul></p>' +
                     '<h5>Departure Airport</h5>' +
-                    '<span id="dFlight' + index + '"></span>' +
+                    '<span id="dFlight' + index + '"><ul>' +
+                        '<li id="dName' + index + '"><strong>Name: </strong></li>' +
+                        '<li id="dLoc' + index + '"><strong>Location: </strong></li>' +
+                        '<li id="dTime' + index + '"><strong>UTC: </strong></li>' +
+                        '<li id="dGate' + index + '"><strong>Gate: </strong></li>' +
+                        '<li id="dWeather' + index + '"><strong>Weather: </strong></li>' +
+                        '<li id="dTemp' + index + '"><strong>Temperature: </strong></li>' +
+                        '<li id="dPrecheck' + index + '"><strong>Security Precheck: </strong></li>' +
+                    '</ul ></span >' +
                     '<h5>Arrival Airport</h5>' +
-                    '<span id="aFlight' + index + '"></span>' +
+                    '<span id="aFlight' + index + '"><ul>' +
+                        '<li id="aName' + index + '"><strong>Name: </strong></li>' +
+                        '<li id="aLoc' + index + '"><strong>Location: </strong></li>' +
+                        '<li id="aTime' + index + '"><strong>UTC: </strong></li>' +
+                        '<li id="aWeather' + index + '"><strong>Weather: </strong></li>' +
+                        '<li id="aTemp' + index + '"><strong>Temperature: </strong></li>' +
+                        '<li id="aTerminal' + index + '"><strong>Terminal: </strong></li>' +
+                        '<li id="aGate' + index + '"><strong>Gate: </strong></li>' +
+                        '<li id="aBaggage' + index + '"><strong>Baggage: </strong></li>' +
+                        '<li id="aPrecheck' + index + '"><strong>Security Precheck: </strong></li>' +
+                    '</ul ></span >' +
                 '</div>' +
             '</div>'
         );
@@ -94,6 +109,9 @@ var constructLayout = function (flights, flightInfo) {
         getFlightStatus(flightInfo, "d", index);
 
         getTsaCheckpoint(val.arrivalAirportFsCode, "a", index);
+        displayWeatherInfo(airport.latitude, airport.longitude, "a", index);
+        flightInfo.airportSC = val.arrivalAirportFsCode;
+        getFlightStatus(flightInfo, "a", index);
     });
 }
 
@@ -103,28 +121,32 @@ var displayInfo = function (info, type, index) {
     //Check that there is actually info
     if (info.length > 2) {
         var airportObj = JSON.parse(info)[0].airport;
-        $('#' + type + 'Flight' + index).append('<p><ul>');
-        $('#' + type + 'Flight' + index).append('<li><strong>Name</strong>: ' + airportObj.name + '</li>');
-        $('#' + type + 'Flight' + index).append('<li><strong>Location</strong>: ' + airportObj.city + ', ' + airportObj.state + '</li>');
-        $('#' + type + 'Flight' + index).append('<li><strong>UTC</strong>: ' + airportObj.utc + '</li>');
-        $('#' + type + 'Flight' + index).append('<li><strong>Precheck</strong>: ' + airportObj.precheck + '</li>');
-        $('#' + type + 'Flight' + index).append('</ul></p>');
+
+        $('#' + type + 'Name' + index).append(airportObj.name)
+        $('#' + type + 'Loc' + index).append(airportObj.city)
+        $('#' + type + 'Time' + index).append(airportObj.utc)
+        $('#' + type + 'Precheck' + index).append(airportObj.utc)
+
+      
     }
     else {
-        $('#' + type + 'Flight' + index).append('<strong>Not Available</strong>');
+        //$('#' + type + 'Flight' + index).append('<strong>Not Available</strong>');
     }
 }
 
 var displayStatusInfo = function (info, type, index) {
     //Check that there is actually info 
-    var airportResources = info.airportResources == undefined ? undefined : info.airportResources;
+    var airportResources = info == undefined ? undefined : info.airportResources;
     if (airportResources != undefined) {
-        $('#' + type + 'Flight' + index).append('<p><ul>')
-        $('#' + type + 'Flight' + index).append('<li><strong>Departure Gate</strong>: ' + airportResources.departureGate + '</li>');
-        $('#' + type + 'Flight' + index).append('</ul></p>')
+        $('#' + type + 'Gate' + index).append(airportResources.departureGate)
+        if (type == 'a') {
+            $('#' + type + 'Terminal' + index).append(airportResources.arrivalTerminal)
+            $('#' + type + 'Gate' + index).append(airportResources.arrivalGate)
+            $('#' + type + 'Baggage' + index).append(airportResources.baggage)
+        }
     }
     else {
-        $('#' + type + 'Flight' + index).append('<strong>Not Available</strong>')
+        $('#' + type + 'Gate' + index).append('N/A')
     }
 }
 
