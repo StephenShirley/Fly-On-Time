@@ -64,7 +64,8 @@ var getTsaCheckpoint = function (shortcodeInput, type, index) {
 //#region DISPLAY FUNCTIONS
 var constructLayout = function (flights, flightInfo) {
     var flightObj = JSON.parse(flights);
-    var airport = flightObj.appendix.airports[0];
+    var departureAirport = flightObj.appendix.airports[0];
+    var arrivalAirport = flightObj.appendix.airports[1];
 
     $.each(flightObj.scheduledFlights, function (index, val) {
         $('#displayBox').append(
@@ -73,15 +74,11 @@ var constructLayout = function (flights, flightInfo) {
                     '<h3 class="panel-title">Flight Number: ' + val.flightNumber + '</h3>' +
                 '</div>' +
                 '<div class="panel-body">' +
-                    '<p><ul>' +
-                        '<li><strong>Arrival Terminal</strong>: ' + val.arrivalTerminal + '</li>' +
-                        '<li><strong>Departure Time</strong>: ' + val.departureTime + '</li>' +
-                        '<li><strong>Arrival Time</strong>: ' + val.arrivalTime + '</li>' +
-                    '</ul></p>' +
                     '<h5>Departure Airport</h5>' +
                     '<span id="dFlight' + index + '"><ul>' +
                         '<li id="dName' + index + '"><strong>Name: </strong></li>' +
                         '<li id="dLoc' + index + '"><strong>Location: </strong></li>' +
+                        '<li><strong>Departure Time</strong>: ' + val.departureTime + '</li>' +
                         '<li id="dTime' + index + '"><strong>UTC: </strong></li>' +
                         '<li id="dGate' + index + '"><strong>Gate: </strong></li>' +
                         '<li id="dWeather' + index + '"><strong>Weather: </strong></li>' +
@@ -92,6 +89,7 @@ var constructLayout = function (flights, flightInfo) {
                     '<span id="aFlight' + index + '"><ul>' +
                         '<li id="aName' + index + '"><strong>Name: </strong></li>' +
                         '<li id="aLoc' + index + '"><strong>Location: </strong></li>' +
+                        '<li><strong>Arrival Time</strong>: ' + val.arrivalTime + '</li>' +
                         '<li id="aTime' + index + '"><strong>UTC: </strong></li>' +
                         '<li id="aWeather' + index + '"><strong>Weather: </strong></li>' +
                         '<li id="aTemp' + index + '"><strong>Temperature: </strong></li>' +
@@ -104,12 +102,12 @@ var constructLayout = function (flights, flightInfo) {
             '</div>'
         );
         getTsaCheckpoint(val.departureAirportFsCode, "d", index);
-        displayWeatherInfo(airport.latitude, airport.longitude, "d", index);
+        displayWeatherInfo(departureAirport.latitude, departureAirport.longitude, "d", index);
         flightInfo.airportSC = val.departureAirportFsCode;
         getFlightStatus(flightInfo, "d", index);
 
         getTsaCheckpoint(val.arrivalAirportFsCode, "a", index);
-        displayWeatherInfo(airport.latitude, airport.longitude, "a", index);
+        displayWeatherInfo(arrivalAirport.latitude, arrivalAirport.longitude, "a", index);
         flightInfo.airportSC = val.arrivalAirportFsCode;
         getFlightStatus(flightInfo, "a", index);
     });
