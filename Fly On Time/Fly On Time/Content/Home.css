@@ -7,5 +7,87 @@
 }
 
 #submitBtn {
-    margin-top:20px;
+    margin-top: 20px;
 }
+
+.datepicker {
+    padding: 6px 12px !important;
+}
+
+
+/*Accordion Stuff*/
+a {
+    text-decoration: none;
+}
+
+:focus, :active {
+    outline: 0;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#accordion {
+    margin: 50px auto;
+}
+
+#accordion .ui-accordion-content {
+    width: 100%;
+    background-color: #f3f3f3;
+    color: #777;
+    font-size: 10pt;
+    line-height: 16pt;
+}
+
+    #accordion .ui-accordion-content > * {
+        margin: 0;
+        padding: 20px;
+    }
+    #accordion .ui-accordion-content a {
+        color: #777;
+    }
+
+#accordion .ui-accordion-header {
+    background-color: #ccc;
+    margin: 0px;
+}
+    #accordion .ui-accordion-header {
+        color: #fff;
+        line-height: 42px;
+        display: block;
+        font-size: 16pt;
+        width: 100%;
+        text-indent: 10px;
+    }
+  
+        #accordion .ui-accordion-header {
+            background-color: #389abe;
+            background-image: -moz-linear-gradient(top, #389abe 0%, #2a7b99 100%); /* FF3.6+ */
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#389abe), color-stop(100%,#2a7b99)); /* Chrome,Safari4+ */
+            background-image: -webkit-linear-gradient(top, #389abe 0%,#2a7b99 100%); /* Chrome10+,Safari5.1+ */
+            background-image: -o-linear-gradient(top, #389abe 0%,#2a7b99 100%); /* Opera 11.10+ */
+            background-image: -ms-linear-gradient(top, #389abe 0%,#2a7b99 100%); /* IE10+ */
+            background-image: linear-gradient(to bottom, #389abe 0%,#2a7b99 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#389abe', endColorstr='#2a7b99',GradientType=0 ); /* IE6-9 */
+        }
+
+      
+    #accordion .ui-accordion-header a {
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        border-right: 1px solid rgba(0, 0, 0, .2);
+        border-left: 1px solid rgba(0, 0, 0, .2);
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        border-top: 1px solid rgba(250, 250, 250, .2);
+    }
+
+#accordion .ui-accordion-content {
+    box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, .4), inset 0px 1px 1px 0px rgba(0, 0, 0, .2);
+}
+
+    #accordion .ui-accordion-content:last-of-type {
+        box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .2), inset 0px 0 0px 0px rgba(0, 0, 0, .5);
+    }

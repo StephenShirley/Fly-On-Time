@@ -1,6 +1,5 @@
 ﻿
 
-
 //#region API CALLS
 var displayWeatherInfo = function (latitude, longitude, type, index) {
     var coordinates = { latitude: latitude, longitude: longitude };
