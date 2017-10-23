@@ -35,9 +35,10 @@ var getFlightStatus = function (input, type, index) {
 var getFlightSchedule = function () {
     var airCode = $('#fsScheduleAirCode').val();
     var fn = $('#fsScheduleFN').val();
-    var year = $('#fsScheduleYear').val();
-    var month = $('#fsScheduleMonth').val();
-    var day = $('#fsScheduleDay').val();
+    var fullDate = $('#fsDate').val();
+    var month = fullDate.substr(0, 2);
+    var day = fullDate.substr(3, 2);
+    var year = fullDate.substr(6, 4); 
     var output = { airCode: airCode, fn: fn, year: year, month: month, day: day };
 
     $.get("/Home/getFlightSchedule", output, function (data, textStatus, XQHR) {
@@ -157,8 +158,9 @@ $('body').on('click', '#searchBtn', function () {
 });
 
 $('body').on('click', '#submitBtn', function () {
-    $('#displayBox').html('');
-    getFlightSchedule();
+    //$('#displayBox').html('');
+    //getFlightSchedule();
+    $('#flightModal').modal('toggle');
 });
 
 
