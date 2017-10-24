@@ -129,6 +129,9 @@
   <data name="fsScheduledFlightsByCarrierFNDate" xml:space="preserve">
     <value>https://api.flightstats.com/flex/schedules/rest/v1/json/flight/</value>
   </data>
+  <data name="fsWeather" xml:space="preserve">
+    <value>https://api.flightstats.com/flex/weather/rest/v1/json/metar/</value>
+  </data>
   <data name="owmAppKey" xml:space="preserve">
     <value>a9aafe4f64307f90dce219c912158410</value>
   </data>

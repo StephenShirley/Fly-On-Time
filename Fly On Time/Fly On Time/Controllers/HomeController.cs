@@ -44,6 +44,16 @@ namespace Fly_On_Time.Controllers
             return Json(information, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult getWeatherByAirport(string airportCode) 
+        {
+            string requestUrl = ApiKeys.fsWeather + airportCode + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey;
+
+            WebClient client = new WebClient();
+            string information = client.DownloadString(requestUrl);
+
+            return Json(information, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult getWeatherByCoordinates(string latitude, string longitude)
         {
             string requestUrl = ApiKeys.owmAppURL + "/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + ApiKeys.owmAppKey + "&units=imperial";

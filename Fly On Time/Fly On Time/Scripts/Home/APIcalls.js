@@ -18,6 +18,28 @@ var displayWeatherInfo = function (latitude, longitude, type, index) {
 
 }
 
+var displayWeatherInfoForAirport = function (airportCode, type, index) {
+    var AC = {airportCode: airportCode};
+    $.get("/Home/getWeatherByAirport", AC, function (data, textStatus, XQHR) {
+        var weatherObj = JSON.parse(data);
+        var weatherCond = "";
+        $.each(weatherObj.metar.tags, function(i, v) {
+            if(v.key == "Prevailing Conditions") {
+                weatherCond = v.value;
+            }
+        });
+        var temperature = parseFloat(weatherObj.metar.temperatureCelsius) * (9.0/5.0) + 32;
+
+        $('#' + type + 'Weather' + index).append(weatherCond);
+        $('#' + type + 'Temp' + index).append(temperature);
+
+
+    }).error(function (data, text) {
+        console.log(data);
+    });
+
+}
+
 
 var getFlightStatus = function (input, type, index) {
     $.get("/Home/getFlightStatus", input, function (data, textStatus, XQHR) {
@@ -102,12 +124,14 @@ var constructLayout = function (flights, flightInfo) {
             '</div>'
         );
         getTsaCheckpoint(val.departureAirportFsCode, "d", index);
-        displayWeatherInfo(departureAirport.latitude, departureAirport.longitude, "d", index);
+        //displayWeatherInfo(departureAirport.latitude, departureAirport.longitude, "d", index);
+        displayWeatherInfoForAirport(departureAirport.fs, "d", index)
         flightInfo.airportSC = val.departureAirportFsCode;
         getFlightStatus(flightInfo, "d", index);
 
         getTsaCheckpoint(val.arrivalAirportFsCode, "a", index);
-        displayWeatherInfo(arrivalAirport.latitude, arrivalAirport.longitude, "a", index);
+        //displayWeatherInfo(arrivalAirport.latitude, arrivalAirport.longitude, "a", index);
+        displayWeatherInfoForAirport(arrivalAirport.fs, "a", index)
         flightInfo.airportSC = val.arrivalAirportFsCode;
         getFlightStatus(flightInfo, "a", index);
     });
@@ -123,7 +147,7 @@ var displayInfo = function (info, type, index) {
         $('#' + type + 'Name' + index).append(airportObj.name)
         $('#' + type + 'Loc' + index).append(airportObj.city)
         $('#' + type + 'Time' + index).append(airportObj.utc)
-        $('#' + type + 'Precheck' + index).append(airportObj.utc)
+        $('#' + type + 'Security Wait Time' + index).append(airportObj.utc)
 
       
     }
@@ -158,8 +182,8 @@ $('body').on('click', '#searchBtn', function () {
 });
 
 $('body').on('click', '#submitBtn', function () {
-    //$('#displayBox').html('');
-    //getFlightSchedule();
+    $('#displayBox').html('');
+    getFlightSchedule();
     $('#flightModal').modal('toggle');
 });
 
@@ -170,14 +194,14 @@ $('body').on('click', '#submitBtn', function () {
 
 //Deprecated for the construct layout function
 //var displayFlightSchedule = function (info, userInput) {
-//    var infoObj = JSON.parse(info);
+//   var infoObj = JSON.parse(info);
 //    var airport = infoObj.appendix.airports[0];
 //    //displayWeatherInfo(airport.latitude, airport.longitude);
 //    $.each(infoObj.scheduledFlights, function (index, val) {
 
 //        $('#displayBox').append('<hr />');
 //        $('#displayBox').append('<h4>Flight Number: ' + val.flightNumber + '</h4>');
-//        $('#displayBox').append('<p><ul>');
+//       $('#displayBox').append('<p><ul>');
 //        $('#displayBox').append('<li><strong>Arrival Terminal</strong>: ' + val.arrivalTerminal + '</li>');
 //        $('#displayBox').append('<li><strong>Departure Time</strong>: ' + val.departureTime + '</li>');
 //        $('#displayBox').append('<li><strong>Arrival Time</strong>: ' + val.arrivalTime + '</li>');
@@ -186,7 +210,7 @@ $('body').on('click', '#submitBtn', function () {
 //        $('#displayBox').append('<h5>Departure Airport</h5>');
 //        $('#displayBox').append('<span id="dFlight' + index + '"></span>');
 //        getTsaCheckpoint(val.departureAirportFsCode, "d", index);
-//        displayWeatherInfo(airport.latitude, airport.longitude, "d", index);
+//       displayWeatherInfo(airport.latitude, airport.longitude, "d", index);
 
 //        userInput.airportSC = val.departureAirportFsCode;
 //        getFlightStatus(userInput, "d", index);
