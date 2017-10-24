@@ -68,39 +68,39 @@ var constructLayout = function (flights, flightInfo) {
     var arrivalAirport = flightObj.appendix.airports[1];
 
     $.each(flightObj.scheduledFlights, function (index, val) {
-        $('#displayBox').append(
-            '<div class="panel panel-default">' +
-                '<div class="panel-heading">' +
-                    '<h3 class="panel-title">Flight Number: ' + val.flightNumber + '</h3>' +
-                '</div>' +
-                '<div class="panel-body">' +
-                    '<h5>Departure Airport</h5>' +
-                    '<span id="dFlight' + index + '"><ul>' +
-                        '<li id="dName' + index + '"><strong>Name: </strong></li>' +
-                        '<li id="dLoc' + index + '"><strong>Location: </strong></li>' +
-                        '<li><strong>Departure Time</strong>: ' + val.departureTime + '</li>' +
-                        '<li id="dTime' + index + '"><strong>UTC: </strong></li>' +
-                        '<li id="dGate' + index + '"><strong>Gate: </strong></li>' +
-                        '<li id="dWeather' + index + '"><strong>Weather: </strong></li>' +
-                        '<li id="dTemp' + index + '"><strong>Temperature: </strong></li>' +
-                        '<li id="dPrecheck' + index + '"><strong>Security Precheck: </strong></li>' +
-                    '</ul ></span >' +
-                    '<h5>Arrival Airport</h5>' +
-                    '<span id="aFlight' + index + '"><ul>' +
-                        '<li id="aName' + index + '"><strong>Name: </strong></li>' +
-                        '<li id="aLoc' + index + '"><strong>Location: </strong></li>' +
-                        '<li><strong>Arrival Time</strong>: ' + val.arrivalTime + '</li>' +
-                        '<li id="aTime' + index + '"><strong>UTC: </strong></li>' +
-                        '<li id="aWeather' + index + '"><strong>Weather: </strong></li>' +
-                        '<li id="aTemp' + index + '"><strong>Temperature: </strong></li>' +
-                        '<li id="aTerminal' + index + '"><strong>Terminal: </strong></li>' +
-                        '<li id="aGate' + index + '"><strong>Gate: </strong></li>' +
-                        '<li id="aBaggage' + index + '"><strong>Baggage: </strong></li>' +
-                        '<li id="aPrecheck' + index + '"><strong>Security Precheck: </strong></li>' +
-                    '</ul ></span >' +
-                '</div>' +
-            '</div>'
-        );
+        //$('#displayBox').append(
+        //    '<div class="panel panel-default">' +
+        //        '<div class="panel-heading">' +
+        //            '<h3 class="panel-title">Flight Number: ' + val.flightNumber + '</h3>' +
+        //        '</div>' +
+        //        '<div class="panel-body">' +
+        //            '<h5>Departure Airport</h5>' +
+        //            '<span id="dFlight' + index + '"><ul>' +
+        //                '<li id="dName' + index + '"><strong>Name: </strong></li>' +
+        //                '<li id="dLoc' + index + '"><strong>Location: </strong></li>' +
+        //                '<li><strong>Departure Time</strong>: ' + val.departureTime + '</li>' +
+        //                '<li id="dTime' + index + '"><strong>UTC: </strong></li>' +
+        //                '<li id="dGate' + index + '"><strong>Gate: </strong></li>' +
+        //                '<li id="dWeather' + index + '"><strong>Weather: </strong></li>' +
+        //                '<li id="dTemp' + index + '"><strong>Temperature: </strong></li>' +
+        //                '<li id="dPrecheck' + index + '"><strong>Security Precheck: </strong></li>' +
+        //            '</ul ></span >' +
+        //            '<h5>Arrival Airport</h5>' +
+        //            '<span id="aFlight' + index + '"><ul>' +
+        //                '<li id="aName' + index + '"><strong>Name: </strong></li>' +
+        //                '<li id="aLoc' + index + '"><strong>Location: </strong></li>' +
+        //                '<li><strong>Arrival Time</strong>: ' + val.arrivalTime + '</li>' +
+        //                '<li id="aTime' + index + '"><strong>UTC: </strong></li>' +
+        //                '<li id="aWeather' + index + '"><strong>Weather: </strong></li>' +
+        //                '<li id="aTemp' + index + '"><strong>Temperature: </strong></li>' +
+        //                '<li id="aTerminal' + index + '"><strong>Terminal: </strong></li>' +
+        //                '<li id="aGate' + index + '"><strong>Gate: </strong></li>' +
+        //                '<li id="aBaggage' + index + '"><strong>Baggage: </strong></li>' +
+        //                '<li id="aPrecheck' + index + '"><strong>Security Precheck: </strong></li>' +
+        //            '</ul ></span >' +
+        //        '</div>' +
+        //    '</div>'
+        //);
         getTsaCheckpoint(val.departureAirportFsCode, "d", index);
         displayWeatherInfo(departureAirport.latitude, departureAirport.longitude, "d", index);
         flightInfo.airportSC = val.departureAirportFsCode;
@@ -120,10 +120,10 @@ var displayInfo = function (info, type, index) {
     if (info.length > 2) {
         var airportObj = JSON.parse(info)[0].airport;
 
-        $('#' + type + 'Name' + index).append(airportObj.name)
-        $('#' + type + 'Loc' + index).append(airportObj.city)
-        $('#' + type + 'Time' + index).append(airportObj.utc)
-        $('#' + type + 'Precheck' + index).append(airportObj.utc)
+        //$('#' + type + 'Name' + index).append(airportObj.name)
+        //$('#' + type + 'Loc' + index).append(airportObj.city)
+        //$('#' + type + 'Time' + index).append(airportObj.utc)
+        //$('#' + type + 'Precheck' + index).append(airportObj.utc)
 
       
     }
@@ -136,7 +136,10 @@ var displayStatusInfo = function (info, type, index) {
     //Check that there is actually info 
     var airportResources = info == undefined ? undefined : info.airportResources;
     if (airportResources != undefined) {
-        $('#' + type + 'Gate' + index).append(airportResources.departureGate)
+        if (type == 'd') {
+            $('#' + type + 'Gate' + index).append(airportResources.departureGate)
+            $('#' + type + 'Gate' + index).append(info.operationalTimes.publishedDeparture.dateUtc)
+        }
         if (type == 'a') {
             $('#' + type + 'Terminal' + index).append(airportResources.arrivalTerminal)
             $('#' + type + 'Gate' + index).append(airportResources.arrivalGate)
@@ -158,8 +161,8 @@ $('body').on('click', '#searchBtn', function () {
 });
 
 $('body').on('click', '#submitBtn', function () {
-    //$('#displayBox').html('');
-    //getFlightSchedule();
+    $('#displayBox').html('');
+    getFlightSchedule();
     $('#flightModal').modal('toggle');
 });
 
