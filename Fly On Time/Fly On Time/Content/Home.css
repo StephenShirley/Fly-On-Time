@@ -91,3 +91,9 @@ a {
     #accordion .ui-accordion-content:last-of-type {
         box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .2), inset 0px 0 0px 0px rgba(0, 0, 0, .5);
     }
+
+#sunny { 
+    width: 46px;
+    height: 46px;
+    background: url('~/weathericons.jpg') 0 0;
+}
