@@ -95,5 +95,5 @@ a {
 #sunny { 
     width: 46px;
     height: 46px;
-    background: url('~/weathericons.jpg') 0 0;
+    background-image: url('Images/weathericons.jpg');
 }

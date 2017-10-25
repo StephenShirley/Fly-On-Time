@@ -46,7 +46,7 @@ namespace Fly_On_Time.Controllers
 
         public JsonResult getWeatherByAirport(string airportCode) 
         {
-            string requestUrl = ApiKeys.fsWeather + airportCode + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey;
+            string requestUrl =ApiKeys.fsWeather + airportCode + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey;
 
             WebClient client = new WebClient();
             string information = client.DownloadString(requestUrl);
