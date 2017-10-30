@@ -19,7 +19,7 @@ namespace Fly_On_Time.Utilities {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ApiKeys {
@@ -93,6 +93,33 @@ namespace Fly_On_Time.Utilities {
         internal static string fsScheduledFlightsByCarrierFNDate {
             get {
                 return ResourceManager.GetString("fsScheduledFlightsByCarrierFNDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AIzaSyDSPU5jM6i4BxPw0SYq5JOqq6JbmzW6mcA.
+        /// </summary>
+        internal static string googleCurLocationKey {
+            get {
+                return ResourceManager.GetString("googleCurLocationKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AIzaSyBf3CLng_I7aSdXXBEIJZJEf3_WNK7patA.
+        /// </summary>
+        internal static string googleMapsAppKey {
+            get {
+                return ResourceManager.GetString("googleMapsAppKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://maps.googleapis.com.
+        /// </summary>
+        internal static string googleMapsAppURL {
+            get {
+                return ResourceManager.GetString("googleMapsAppURL", resourceCulture);
             }
         }
         

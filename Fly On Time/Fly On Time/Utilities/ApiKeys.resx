@@ -129,6 +129,15 @@
   <data name="fsScheduledFlightsByCarrierFNDate" xml:space="preserve">
     <value>https://api.flightstats.com/flex/schedules/rest/v1/json/flight/</value>
   </data>
+  <data name="googleCurLocationKey" xml:space="preserve">
+    <value>AIzaSyDSPU5jM6i4BxPw0SYq5JOqq6JbmzW6mcA</value>
+  </data>
+  <data name="googleMapsAppKey" xml:space="preserve">
+    <value>AIzaSyBf3CLng_I7aSdXXBEIJZJEf3_WNK7patA</value>
+  </data>
+  <data name="googleMapsAppURL" xml:space="preserve">
+    <value>https://maps.googleapis.com</value>
+  </data>
   <data name="owmAppKey" xml:space="preserve">
     <value>a9aafe4f64307f90dce219c912158410</value>
   </data>
