@@ -30,6 +30,26 @@ var displayWeatherInfoForAirport = function (airportCode, type, index) {
         });
         var temperature = parseFloat(weatherObj.metar.temperatureCelsius) * (9.0/5.0) + 32;
 
+        if (weatherCond == "Rain" || weatherCond == "High Chance of Rain" || weatherCond == "Showers") {
+            $("#image").attr("class", "rain");
+        } else if (weatherCond == "Low Chance of Showers") {
+            $("#image").attr("class", "lightrain");
+        } else if (weatherCond == "Cloudy" || weatherCond == "Smog" || weatherCond == "Volcanic Ash" || weatherCond == "Fog" || weatherCond == "Smoke" || weatherCond == "Patchy Fog") {
+            $("#image").attr("class", "cloudy");
+        } else if (weatherCond == "Partly Sunny" || weatherCond == "Mostly Clear" || weatherCond == "Partly Cloudy") {
+            $("#image").attr("class", "partlycloudy");
+        } else if (weatherCond == "Clear" || weatherCond == "Sunny") {
+            $("#image").attr("class", "sunny");
+        } else if (weatherCond == "Hurricane") {
+            $("#image").attr("class", "hurricane");
+        } else if (weatherCond == "Thunderstorms") {
+            $("#image").attr("class", "thunderstom");
+        } else if (weatherCond == "Ice" || weatherCond == "Snow") {
+            $("#image").attr("class", "snow");
+        } else if (weatherCond == "Tornado" || weatherCond == "Dust / Sand Storms" || weatherCond == "Windy" || weatherCond == "Breezy") {
+            $("#image").attr("class", "windy");
+        }
+
         $('#' + type + 'Weather' + index).append(weatherCond);
         $('#' + type + 'Temp' + index).append(temperature);
 
