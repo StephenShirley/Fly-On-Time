@@ -52,9 +52,14 @@
     </div>
 </div>
 
-<div id="hideAccordion">
-    <div id="accordion">
-        <h3>Travel & Parking</h3>
+<div id="tabBox" class="bar row">
+    <div id="tab1" class="icon col-xs-6"><span id="tab1Text" class="tabText">Flight 1</span></div>
+    <div id="tab2" class="icon col-xs-6"><span id="tab2Text" class="tabText">Flight 2</span></div>
+</div>
+
+<div id="hideAccordion1">
+    <div class="accordion">
+        <h3>Guidance To Airport</h3>
         <div style="height:400px; width: 100%">
             <div id="map"></div>
         </div>
@@ -131,12 +136,86 @@
     </div>
 </div>
 
-<div class="row" id="flightBox">
-    <div class="col-md-12">
-        <p id="displayBox"></p>
-
+<div id="hideAccordion2">
+    <div class="accordion">
+        <h3>Guidance To Airport</h3>
+        <div style="height:400px; width: 100%">
+            <div id="map"></div>
+        </div>
+        <h3>Departure Airport Information</h3>
+        <div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <p><strong>Departing</strong></p>
+                    <p id="dName0"></p>
+                </div>
+                <div class="col-xs-6">
+                    <p><strong>On</strong></p>
+                    <p id="dDate0"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <p><strong>Departure Gate</strong></p>
+                    <p id="dGate0"></p>
+                </div>
+                <div class="col-xs-4">
+                    <p><strong>Scheduled</strong></p>
+                    <p id="dGateSchedTime0"></p>
+                </div>
+                <div class="col-xs-4">
+                    <p><strong>Estimated</strong></p>
+                    <p id="dGateEstTime0"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <p><strong>Terminal</strong></p>
+                    <p id="dTerminal0"></p>
+                </div>
+            </div>
+        </div>
+        <h3>Arrival Airport Information</h3>
+        <div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <p><strong>Departing</strong></p>
+                    <p id="aName0"></p>
+                </div>
+                <div class="col-xs-6">
+                    <p><strong>On</strong></p>
+                    <p id="aDate0"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <p><strong>Arrival Gate</strong></p>
+                    <p id="aGate0"></p>
+                </div>
+                <div class="col-xs-4">
+                    <p><strong>Scheduled</strong></p>
+                    <p id="aGateSchedTime0"></p>
+                </div>
+                <div class="col-xs-4">
+                    <p><strong>Estimated</strong></p>
+                    <p id="aGateEstTime0"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <p><strong>Terminal</strong></p>
+                    <p id="aTerminal0"></p>
+                </div>
+                <div class="col-xs-4">
+                    <p><strong>Baggage</strong></p>
+                    <p id="aBaggage0"></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 
 <script>
@@ -148,105 +227,7 @@
     $('.datepicker').datepicker('setDate', 'now');
 
 
-
-    //Googles Maps stuff
-    var map, infoWindow;
-    var directionsService, directionsDisplay;
-    //An explanation of the destination location can be found in tarnation!
-    var destinationLocation, currentLocation;
-
-    function initMap() {
-        directionsService = new google.maps.DirectionsService;
-        directionsDisplay = new google.maps.DirectionsRenderer;
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 6
-        });
-        infoWindow = new google.maps.InfoWindow;
-        directionsDisplay.setMap(map);
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                currentLocation = pos;
-                //infoWindow.setPosition(pos);
-                //infoWindow.setContent('Location found.');
-                //infoWindow.open(map);
-                //map.setCenter(pos);
-                calculateAndDisplayRoute(directionsService, directionsDisplay, currentLocation, destinationLocation);
-            }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    }
-
-    function calculateAndDisplayRoute(directionsService, directionsDisplay, currentLocation, destinationCoordinates) {
-        directionsService.route({
-            origin: currentLocation,
-            destination: destinationCoordinates,
-            travelMode: 'DRIVING'
-        }, function (response, status) {
-            if (status === 'OK') {
-                directionsDisplay.setDirections(response);
-            } else {
-                window.alert('Directions request failed due to ' + status);
-            }
-        });
-    }
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-    }
-
-
-
     $.getScript("/Scripts/jquery-ui-1.12.1.custom/jquery-ui.js", function () {
-    
-
-
-        var getFlightStatus = function (input, type, index) {
-            $.get("/Home/getFlightStatus", input, function (data, textStatus, XQHR) {
-                //console.log("Flight status: " + data);
-                var jsonData = JSON.parse(data);
-
-                displayStatusInfo(jsonData, type, index);
-
-            }).error(function (data, text) {
-                console.log(data);
-            });
-        }
-
-
-        var getFlightSchedule = function () {
-            var airCode = $('#fsScheduleAirCode').val();
-            var fn = $('#fsScheduleFN').val();
-            var fullDate = $('#fsDate').val();
-            var month = fullDate.substr(0, 2);
-            var day = fullDate.substr(3, 2);
-            var year = fullDate.substr(6, 4);
-            var output = { airCode: airCode, fn: fn, year: year, month: month, day: day };
-
-            $.get("/Home/getFlightSchedule", output, function (data, textStatus, XQHR) {
-                constructLayout(data, output);
-
-
-            }).error(function (data, text) {
-                console.log(data);
-            });
-
-        }
-
-
 
         //#region DISPLAY FUNCTIONS
         var constructLayout = function (flights, flightInfo) {
@@ -254,13 +235,14 @@
             var departureAirport = flightObj.appendix.airports[0];
             var arrivalAirport = flightObj.appendix.airports[1];
 
-            $('#hideAccordion').slideDown();
-            $("#accordion").accordion({
+            $('#hideAccordion1').slideDown();
+            $(".accordion").accordion({
                 collapsible: true,
                 active: false,
                 activate: activateGoogleMaps
             });
-            //loadGoogleMaps();
+            console.log(flights);
+
             $.each(flightObj.scheduledFlights, function (index, val) {
 
                 //getTsaCheckpoint(val.departureAirportFsCode, "d", index);
@@ -273,7 +255,6 @@
                 flightInfo.airportSC = val.arrivalAirportFsCode;
                 getFlightStatus(flightInfo, "a", index);
             });
-            google.maps.event.trigger(map, 'resize');
         }
 
 
@@ -308,7 +289,6 @@
                                 lng: v.longitude
                             };
                         }
-
                     });
                 }
                 if (type == 'a') {
@@ -326,19 +306,105 @@
             else {
                 $('#' + type + 'GateSchedTime' + index).append("N/A");
                 $('#' + type + 'GateEstTime' + index).append("N/A");
-                if (type == 'd') {
-                    $('#' + type + 'Gate' + index).append("N/A");
-                }
+                $('#' + type + 'Gate' + index).append("N/A");
+                $('#' + type + 'Terminal' + index).append("N/A");
+
                 if (type == 'a') {
-                    $('#' + type + 'Terminal' + index).append("N/A");
-                    $('#' + type + 'Gate' + index).append("N/A");
                     $('#' + type + 'Baggage' + index).append("N/A");
                 }
             }
         }
 
+        var getFlightStatus = function (input, type, index) {
+            $.get("/Home/getFlightStatus", input, function (data, textStatus, XQHR) {
+                //console.log("Flight status: " + data);
+                var jsonData = JSON.parse(data);
+
+                displayStatusInfo(jsonData, type, index);
+
+            }).error(function (data, text) {
+                console.log(data);
+            });
+        }
+
+
+        var getFlightSchedule = function () {
+            var airCode = $('#fsScheduleAirCode').val();
+            var fn = $('#fsScheduleFN').val();
+            var fullDate = $('#fsDate').val();
+            var month = fullDate.substr(0, 2);
+            var day = fullDate.substr(3, 2);
+            var year = fullDate.substr(6, 4);
+            var output = { airCode: airCode, fn: fn, year: year, month: month, day: day };
+
+            $.get("/Home/getFlightSchedule", output, function (data, textStatus, XQHR) {
+                constructLayout(data, output);
+
+
+            }).error(function (data, text) {
+                console.log(data);
+            });
+
+        }
 
         //#endregion
+
+        //Googles Maps stuff
+        var map, infoWindow;
+        var directionsService, directionsDisplay;
+        //An explanation of the destination location can be found in tarnation!
+        var destinationLocation, currentLocation;
+
+        function initMap() {
+            directionsService = new google.maps.DirectionsService;
+            directionsDisplay = new google.maps.DirectionsRenderer;
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 6
+            });
+            infoWindow = new google.maps.InfoWindow;
+            directionsDisplay.setMap(map);
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    currentLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    //Calling at this location so that the origin position is there.
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, currentLocation, destinationLocation);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, currentLocation, destinationCoordinates) {
+            directionsService.route({
+                origin: currentLocation,
+                destination: destinationCoordinates,
+                travelMode: 'DRIVING'
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+
 
         //PAGE EVENTS
 

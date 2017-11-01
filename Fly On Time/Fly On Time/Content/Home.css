@@ -14,6 +14,35 @@
     padding: 6px 12px !important;
 }
 
+/*Tab Styling*/
+.bar {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+}
+
+.icon {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.tabText {
+    margin-top: 7px;
+}
+
+#tab1 {
+    border: 2px solid grey;
+    border-right: none;
+    background-color: lightgrey;
+    border-radius: 5px 0 0 5px;
+}
+
+#tab2 {
+    border: 2px solid grey;
+    background-color: lightgrey;
+    border-radius: 0 5px 5px 0;
+}
 
 /*Accordion Stuff*/
 a {
@@ -33,7 +62,7 @@ a {
 #accordion {
     margin: 50px auto;
 }
-#hideAccordion {
+#hideAccordion1, #hideAccordion2 {
     display: none;
 }
 
