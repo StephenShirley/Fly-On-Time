@@ -129,6 +129,9 @@
   <data name="fsScheduledFlightsByCarrierFNDate" xml:space="preserve">
     <value>https://api.flightstats.com/flex/schedules/rest/v1/json/flight/</value>
   </data>
+  <data name="fsWeather" xml:space="preserve">
+    <value>https://api.flightstats.com/flex/weather/rest/v1/json/metar/</value>
+  </data>
   <data name="googleCurLocationKey" xml:space="preserve">
     <value>AIzaSyDSPU5jM6i4BxPw0SYq5JOqq6JbmzW6mcA</value>
   </data>

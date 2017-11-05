@@ -1,5 +1,28 @@
-﻿#fsScheduleInputs {
-    margin-top: 40px;
+﻿html, body {
+    background-color: #222222;
+}
+
+
+.whiteText {
+    color: white;
+}
+
+hr {
+    border-top: 1px solid #080808 !important;
+}
+#dropDownButton {
+    border-top: #080808 1px solid;
+    padding-left: 47%;
+    cursor: pointer;
+    display: none;
+}
+
+.glyphicon-chevron-down {
+    color: white;
+    font-size: 23px;
+}
+#fsScheduleInputs {
+    margin-top: 20px;
 }
 
 #flightBox {
@@ -14,11 +37,25 @@
     padding: 6px 12px !important;
 }
 
+#modalButton2 {
+    margin-top: 15px;
+}
+.close {
+    color: white;
+}
+.modal-content {
+    background-color: #222222;
+    color: white;
+}
+.btn-lg {
+    white-space: normal;
+}
+
 /*Tab Styling*/
 .bar {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 10px;
+    margin-top: 45px;
 }
 
 .icon {
@@ -31,16 +68,20 @@
     margin-top: 7px;
 }
 
+#tabBox {
+    display: none;
+}
+
 #tab1 {
     border: 2px solid grey;
     border-right: none;
-    background-color: lightgrey;
+    background-color: #777777;
     border-radius: 5px 0 0 5px;
 }
 
 #tab2 {
     border: 2px solid grey;
-    background-color: lightgrey;
+    background-color: #777777;
     border-radius: 0 5px 5px 0;
 }
 
@@ -65,7 +106,9 @@ a {
 #hideAccordion1, #hideAccordion2 {
     display: none;
 }
-
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    background-color: #6d6d6d !important;
+}
 .accordion .ui-accordion-content {
     width: 100%;
     background-color: #f3f3f3;
@@ -96,14 +139,8 @@ a {
     }
   
         .accordion .ui-accordion-header {
-            background-color: #389abe;
-            background-image: -moz-linear-gradient(top, #389abe 0%, #2a7b99 100%); /* FF3.6+ */
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#389abe), color-stop(100%,#2a7b99)); /* Chrome,Safari4+ */
-            background-image: -webkit-linear-gradient(top, #389abe 0%,#2a7b99 100%); /* Chrome10+,Safari5.1+ */
-            background-image: -o-linear-gradient(top, #389abe 0%,#2a7b99 100%); /* Opera 11.10+ */
-            background-image: -ms-linear-gradient(top, #389abe 0%,#2a7b99 100%); /* IE10+ */
-            background-image: linear-gradient(to bottom, #389abe 0%,#2a7b99 100%); /* W3C */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#389abe', endColorstr='#2a7b99',GradientType=0 ); /* IE6-9 */
+            background-color: #777777;
+            color: lightgrey;
         }
 
       
@@ -113,7 +150,7 @@ a {
         border-right: 1px solid rgba(0, 0, 0, .2);
         border-left: 1px solid rgba(0, 0, 0, .2);
         border-bottom: 1px solid rgba(0, 0, 0, .2);
-        border-top: 1px solid rgba(250, 250, 250, .2);
+        border-top: 1px solid black;
     }
 
 .accordion .ui-accordion-content {
@@ -126,6 +163,73 @@ a {
 
 
 /*Google map stuff*/
-#map {
+#map, #map2 {
     height: 100%;
+}
+
+.mapContainer {
+    height: 400px;
+    width: 100%;
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+/*Weather Image Styling*/
+#dWeatherImage0, #dWeatherImage1, #aWeatherImage0, #aWeatherImage1 {
+    margin-top: 20px;
+}
+.sunny { 
+    width: 80px;
+    height: 80px;
+    background: url('Images/weathericons-sm.jpg') -75px -75px;
+}
+
+.cloudy {
+    width: 110px;
+    height: 80px;
+    background: url('Images/weathericons-sm.jpg') -205px -75px;
+}
+
+.partlycloudy {
+    width: 110px;
+    height: 85px;
+    background: url('Images/weathericons-sm.jpg') -365px -80px;
+}
+
+.rain {
+    width: 80px;
+    height: 85px;
+    background: url('Images/weathericons-sm.jpg') -550px -100px;
+}
+
+.lightrain {
+    width: 80px;
+    height: 85px;
+    background: url('Images/weathericons-sm.jpg') -75px -1835px;
+}
+
+.hurricane {
+    width: 110px;
+    height: 100px;
+    background: url('Images/weathericons-sm.jpg') -7015px -7020px;
+}
+
+.thunderstorm {
+    width: 87px;
+    height: 100px;
+    background: url('Images/weathericons-sm.jpg') -4705px -5995px;
+}
+
+.snow {
+    width: 85px;
+    height: 95px;
+    background: url('Images/weathericons-sm.jpg') -75px -5995px;
+}
+
+.windy {
+    width: 125px;
+    height: 80px;
+    background: url('Images/weathericons-sm.jpg') -4705px -1835px;
 }

@@ -55,6 +55,27 @@ namespace Fly_On_Time.Controllers
             return Json(information, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult getWeatherByAirport(string airportCode)
+        {
+            string requestUrl = ApiKeys.fsWeather + airportCode + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey;
+
+            WebClient client = new WebClient();
+            string information = client.DownloadString(requestUrl);
+
+            return Json(information, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getTravelEstimation(string originLat, string originLng, string destLatitude, string destLongitude)
+        {
+
+            string requestUrl = ApiKeys.googleMapsAppURL + "/maps/api/distancematrix/json?units=imperial&origins=" 
+                    + originLat+ "," + originLng + "&destinations=" + destLatitude + "," + destLongitude + "&key=" + ApiKeys.googleMapsAppKey;
+
+            WebClient client = new WebClient();
+            string information = client.DownloadString(requestUrl);
+
+            return Json(information, JsonRequestBehavior.AllowGet);   
+        }
 
     }
 }

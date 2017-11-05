@@ -16,15 +16,15 @@
                 <h4 class="modal-title">Choose Your Flight</h4>
             </div>
             <div id="modalBody" class="modal-body">
-                <button class="btn btn-lg">Kansas to Texas</button>
-                <button class="btn btn-lg">Texas to Kansas</button>
+                <button id="modalButton1" class="btn btn-lg"></button>
+                <button id="modalButton2" class="btn btn-lg"></button>
             </div>
 
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div id="fsScheduleInputs">
+<div id="fsScheduleInputs" class="whiteText">
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
@@ -58,10 +58,13 @@
 </div>
 
 <div id="hideAccordion1">
-    <div class="accordion">
+    <div id="accordion1" class="accordion">
         <h3>Guidance To Airport</h3>
-        <div style="height:400px; width: 100%">
-            <div id="map"></div>
+        <div class="mapContainer">
+            <div style="padding-bottom: 0; margin-left: 14%;"><strong>Travel Time Estimation: </strong><span id="dDuration0"></span> </div>
+            <div style="height:360px; width: 100%;">
+                <div id="map"></div>
+            </div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -74,8 +77,6 @@
                     <p><strong>On</strong></p>
                     <p id="dDate0"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Departure Gate</strong></p>
                     <p id="dGate0"></p>
@@ -88,11 +89,19 @@
                     <p><strong>Estimated</strong></p>
                     <p id="dGateEstTime0"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Terminal</strong></p>
                     <p id="dTerminal0"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-5">
+                    <p><strong>Weather</strong></p>
+                    <p id="dWeather0"></p>
+                    <span id="dTemp0"></span>F
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <img id="dWeatherImage0" class="hidden" src="~/Content/Images/img_trans.gif" />
                 </div>
             </div>
         </div>
@@ -107,8 +116,6 @@
                     <p><strong>On</strong></p>
                     <p id="aDate0"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Arrival Gate</strong></p>
                     <p id="aGate0"></p>
@@ -121,8 +128,6 @@
                     <p><strong>Estimated</strong></p>
                     <p id="aGateEstTime0"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Terminal</strong></p>
                     <p id="aTerminal0"></p>
@@ -132,16 +137,29 @@
                     <p id="aBaggage0"></p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-5">
+                    <p><strong>Weather</strong></p>
+                    <p id="aWeather0"></p>
+                    <span id="aTemp0"></span>F
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <img id="aWeatherImage0" class="hidden" src="~/Content/Images/img_trans.gif" />
+                </div>
+            </div>
         </div>
 
     </div>
 </div>
 
 <div id="hideAccordion2">
-    <div class="accordion">
+    <div id="accordion2" class="accordion">
         <h3>Guidance To Airport</h3>
-        <div style="height:400px; width: 100%">
-            <div id="map2"></div>
+        <div class="mapContainer">
+            <div style="padding-bottom: 0; margin-left: 14%;"><strong>Travel Time Estimation: </strong><span id="dDuration1"></span> </div>
+            <div style="height:360px; width: 100%;">
+                <div id="map2"></div>
+            </div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -154,8 +172,6 @@
                     <p><strong>On</strong></p>
                     <p id="dDate1"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Departure Gate</strong></p>
                     <p id="dGate1"></p>
@@ -168,11 +184,19 @@
                     <p><strong>Estimated</strong></p>
                     <p id="dGateEstTime1"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Terminal</strong></p>
                     <p id="dTerminal1"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-5">
+                    <p><strong>Weather</strong></p>
+                    <p id="dWeather1"></p>
+                    <span id="dTemp1"></span>F
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <img id="dWeatherImage1" class="hidden" src="~/Content/Images/img_trans.gif" />
                 </div>
             </div>
         </div>
@@ -187,8 +211,6 @@
                     <p><strong>On</strong></p>
                     <p id="aDate1"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Arrival Gate</strong></p>
                     <p id="aGate1"></p>
@@ -201,8 +223,6 @@
                     <p><strong>Estimated</strong></p>
                     <p id="aGateEstTime1"></p>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Terminal</strong></p>
                     <p id="aTerminal1"></p>
@@ -212,8 +232,19 @@
                     <p id="aBaggage1"></p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-5">
+                    <p><strong>Weather</strong></p>
+                    <p id="aWeather1"></p>
+                    <span id="aTemp1"></span>F
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <img id="aWeatherImage1" class="hidden" src="~/Content/Images/img_trans.gif" />
+                </div>
+            </div>
         </div>
     </div>
+</div>
 </div>
 
 
@@ -228,8 +259,8 @@
     $('.datepicker').datepicker('setDate', 'now');
 
 
-    $.getScript("/Scripts/jquery-ui-1.12.1.custom/jquery-ui.js", function () {
 
+    $.getScript("/Scripts/jquery-ui-1.12.1.custom/jquery-ui.js", function () {
         //#region DISPLAY FUNCTIONS
         var constructLayout = function (flights, flightInfo) {
             var flightObj = JSON.parse(flights);
@@ -237,10 +268,16 @@
             var arrivalAirport = flightObj.appendix.airports[1];
 
             $('#hideAccordion1').slideDown();
-            $(".accordion").accordion({
+            $("#accordion1").accordion({
                 collapsible: true,
                 active: false,
                 activate: activateGoogleMaps,
+                heightStyle: "content"
+            });
+            $("#accordion2").accordion({
+                collapsible: true,
+                active: false,
+                activate: activateGoogleMaps2,
                 heightStyle: "content"
             });
             //console.log(flights);
@@ -255,60 +292,85 @@
             //Check that there is actually info
             var airportResources = info.flightStatuses[index] == undefined ? undefined : info.flightStatuses[0].airportResources;
 
+            $('#modalButton1').html('')
+            $('#modalButton2').html('')
+            $('#modalButton1').append(info.appendix.airports[0].name + ' to ' + info.appendix.airports[1].name)
+            $('#modalButton2').append(info.appendix.airports[1].name + ' to ' + info.appendix.airports[0].name)
+
+            $('#tab1Text').html('')
+            $('#tab2Text').html('')
+
+            $('#tab1Text').append(info.appendix.airports[0].fs + ' to ' + info.appendix.airports[1].fs)
+            $('#tab2Text').append(info.appendix.airports[1].fs + ' to ' + info.appendix.airports[0].fs)
+
+            $('#dName' + index).html('');
+            $('#dDate' + index).html('');
+            $('#dGate' + index).html('');
+            $('#dGateSchedTime' + index).html("");
+            $('#dGateEstTime' + index).html("");
+            $('#dTerminal' + index).html('');
+            $('#dBaggage' + index).html('');
+
+            $('#aName' + index).html('');
+            $('#aDate' + index).html('');
+            $('#aGate' + index).html('');
+            $('#aGateSchedTime' + index).html("");
+            $('#aGateEstTime' + index).html("");
+            $('#aTerminal' + index).html('');
+            $('#aBaggage' + index).html('');
 
             if (airportResources !== undefined) {
                 //Departure Airport
-                $('#dName' + index).html('');
-                $('#dDate' + index).html('');
-                $('#dGate' + index).html('');
-                $('#dGateSchedTime' + index).html("");
-                $('#dGateEstTime' + index).html("");
-                $('#dTerminal' + index).html('');
-                $('#dBaggage' + index).html('');
 
-                $('#dDate' + index).append(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc)
-                $('#dGateSchedTime' + index).append(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc)
-                $('#dGateEstTime' + index).append(info.flightStatuses[index].operationalTimes.estimatedGateDeparture.dateUtc)
+
+                $('#dDate' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc).toDateString())
+                $('#dGateSchedTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc).toTimeString())
+                $('#dGateEstTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.estimatedGateDeparture.dateUtc).toTimeString())
                 $('#dGate' + index).append(airportResources.departureGate)
                 $('#dTerminal' + index).append(airportResources.departureTerminal)
                 $.each(info.appendix.airports, function (i, v) {
                     if (v.fs == info.flightStatuses[index].departureAirportFsCode) {
                         $('#dName' + index).append(v.fs + " - " + v.name);
-                        destinationLocation = {
+                        destinationLocation1 = {
                             lat: v.latitude,
                             lng: v.longitude
                         };
+                        displayWeatherInfoForAirport(v.fs, 'd', index)
                     }
                 });
 
                 //Arrival airport
-                $('#aName' + index).html('');
-                $('#aDate' + index).html('');
-                $('#aGate' + index).html('');
-                $('#aGateSchedTime' + index).html("");
-                $('#aGateEstTime' + index).html("");
-                $('#aTerminal' + index).html('');
-                $('#aBaggage' + index).html('');
+
 
                 console.log(info);
-                $('#aDate' + index).append(info.flightStatuses[index].operationalTimes.scheduledGateArrival.dateUtc)
-                $('#aGateSchedTime' + index).append(info.flightStatuses[index].operationalTimes.scheduledGateArrival.dateUtc)
-                $('#aGateEstTime' + index).append(info.flightStatuses[index].operationalTimes.estimatedGateArrival.dateUtc)
+                $('#aDate' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateArrival.dateUtc).toDateString())
+                $('#aGateSchedTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateArrival.dateUtc).toTimeString())
+                $('#aGateEstTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.estimatedGateArrival.dateUtc).toTimeString())
                 $('#aTerminal' + index).append(airportResources.arrivalTerminal)
                 $('#aGate' + index).append(airportResources.arrivalGate)
                 $('#aBaggage' + index).append(airportResources.baggage)
                 $.each(info.appendix.airports, function (i, v) {
                     if (v.fs == info.flightStatuses[index].arrivalAirportFsCode) {
                         $('#aName' + index).append(v.fs + " - " + v.name);
+                        destinationLocation2 = {
+                            lat: v.latitude,
+                            lng: v.longitude
+                        };
+                        displayWeatherInfoForAirport(v.fs, 'a', index)
                     }
                 });
             }
             else {
+
+                $('#dName' + index).append("N/A");
+                $('#dDate' + index).append("N/A");
                 $('#dGateSchedTime' + index).append("N/A");
                 $('#dGateEstTime' + index).append("N/A");
                 $('#dGate' + index).append("N/A");
                 $('#dTerminal' + index).append("N/A");
 
+                $('#aName' + index).append("N/A");
+                $('#aDate' + index).append("N/A");
                 $('#aGateSchedTime' + index).append("N/A");
                 $('#aGateEstTime' + index).append("N/A");
                 $('#aGate' + index).append("N/A");
@@ -350,18 +412,62 @@
 
         }
 
+        var displayWeatherInfoForAirport = function (airportCode, type, index) {
+            var AC = { airportCode: airportCode };
+            $.get("/Home/getWeatherByAirport", AC, function (data, textStatus, XQHR) {
+                var weatherObj = JSON.parse(data);
+                var weatherCond = "";
+                $.each(weatherObj.metar.tags, function (i, v) {
+                    if (v.key == "Prevailing Conditions") {
+                        weatherCond = v.value;
+                    }
+                });
+                var temperature = parseFloat(weatherObj.metar.temperatureCelsius) * (9.0 / 5.0) + 32;
+
+                if (weatherCond == "Rain" || weatherCond == "High Chance of Rain" || weatherCond == "Showers") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "rain");
+                } else if (weatherCond == "Low Chance of Showers") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "lightrain");
+                } else if (weatherCond == "Cloudy" || weatherCond == "Smog" || weatherCond == "Volcanic Ash" || weatherCond == "Fog" || weatherCond == "Smoke" || weatherCond == "Patchy Fog") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "cloudy");
+                } else if (weatherCond == "Partly Sunny" || weatherCond == "Mostly Clear" || weatherCond == "Partly Cloudy") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "partlycloudy");
+                } else if (weatherCond == "Clear" || weatherCond == "Sunny") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "sunny");
+                } else if (weatherCond == "Hurricane") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "hurricane");
+                } else if (weatherCond == "Thunderstorms") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "thunderstom");
+                } else if (weatherCond == "Ice" || weatherCond == "Snow") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "snow");
+                } else if (weatherCond == "Tornado" || weatherCond == "Dust / Sand Storms" || weatherCond == "Windy" || weatherCond == "Breezy") {
+                    $("#" + type + 'WeatherImage' + index).attr("class", "windy");
+                }
+
+                $('#' + type + 'Weather' + index).html("");
+                $('#' + type + 'Temp' + index).html("");
+                $('#' + type + 'Weather' + index).append(weatherCond);
+                $('#' + type + 'Temp' + index).append(Math.round(temperature));
+
+
+            }).error(function (data, text) {
+                console.log(data);
+            });
+
+        }
+
         //#endregion
 
         //Googles Maps stuff
         var map, infoWindow;
         var directionsService, directionsDisplay;
         //An explanation of the destination location can be found in tarnation!
-        var destinationLocation, currentLocation;
+        var destinationLocation1, destinationLocation2, currentLocation;
 
-        function initMap() {
+        function initMap(mapID, destination, destLat, destLong, index) {
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
-            map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById(mapID), {
                 center: { lat: -34.397, lng: 150.644 },
                 zoom: 6
             });
@@ -377,7 +483,8 @@
                     };
 
                     //Calling at this location so that the origin position is there.
-                    calculateAndDisplayRoute(directionsService, directionsDisplay, currentLocation, destinationLocation);
+                    calculateAndDisplayRoute(directionsService, directionsDisplay, currentLocation, destination);
+                    displayTravelTimeEstimationInfo(currentLocation.lat, currentLocation.lng, destLat, destLong, 'd', index)
                 }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
@@ -409,30 +516,78 @@
         }
 
 
+        var displayTravelTimeEstimationInfo = function (origLat, origLng, destLatitude, destLongitude, type, index) {
+            var coordinates = { originLat: origLat, originLng: origLng, destLatitude: destLatitude, destLongitude: destLongitude };
+            $.get("/Home/getTravelEstimation", coordinates, function (data, textStatus, XQHR) {
+                var jsonData = JSON.parse(data);
+                var durationInSeconds = jsonData.rows[0].elements[0].duration.value;
+                var date = new Date(null);
+                date.setSeconds(durationInSeconds);
+                var durationConverted = date.getHours() + ' h ' + date.getMinutes() + ' min';
+                $('#' + type + 'Duration' + index).html('');
+                $('#' + type + 'Duration' + index).append(durationConverted);
+
+            }).error(function (data, text) {
+                console.log(data);
+            });
+        }
+
+
         //PAGE EVENTS
-
-        $('body').on('click', '#searchBtn', function () {
-            var input = $('#shortcodeInput').val();
-            getTsaCheckpoint(input);
-        });
-
         $('body').on('click', '#submitBtn', function () {
             getFlightSchedule();
+            $('#fsScheduleInputs').slideUp();
+            $('#dropDownButton').slideDown();
+            $('#tabBox').show();
+
+            $('#flightModal').modal('toggle');
             //$('#flightModal').modal('toggle');
         });
 
+        $('body').on('click', '#dropDownButton', function () {
+            $('#fsScheduleInputs').slideDown();
+            $('#dropDownButton').slideUp();
+            $('#hideAccordion2').slideUp();
+            $('#hideAccordion1').slideUp();
+            $('#tabBox').hide();
+        });
+
+
         $('body').on('click', '#tab1', function () {
+            $(this).css('background-color', 'lightgrey')
+            $('#tab2').css('background-color', '#777777')
             $('#hideAccordion2').hide();
             $('#hideAccordion1').show();
         });
 
         $('body').on('click', '#tab2', function () {
+            $(this).css('background-color', 'lightgrey')
+            $('#tab1').css('background-color', '#777777')
             $('#hideAccordion1').hide();
             $('#hideAccordion2').show();
         });
 
+        $('body').on('click', '#modalButton1', function () {
+            $('#tab1').css('background-color', 'lightgrey')
+            $('#tab2').css('background-color', '#777777')
+            $('#hideAccordion2').hide();
+            $('#hideAccordion1').show();
+            $('#flightModal').modal('toggle');
+        });
+
+        $('body').on('click', '#modalButton2', function () {
+            $('#tab2').css('background-color', 'lightgrey')
+            $('#tab1').css('background-color', '#777777')
+            $('#hideAccordion1').hide();
+            $('#hideAccordion2').show();
+            $('#flightModal').modal('toggle');
+        });
+
         var activateGoogleMaps = function () {
-            initMap();
+            initMap('map', destinationLocation2, destinationLocation2.lat, destinationLocation2.lng, 0);
+        }
+        var activateGoogleMaps2 = function () {
+            initMap('map2', destinationLocation1, destinationLocation1.lat, destinationLocation1.lng, 1);
         }
     });
 </script>

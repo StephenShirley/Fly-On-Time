@@ -197,7 +197,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Home.css" />
+    <Content Include="Content\Images\img_trans.gif" />
     <Content Include="Content\Images\plane graphic.PNG" />
+    <Content Include="Content\Images\weathericons-sm.jpg" />
+    <Content Include="Content\Images\weathericons.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
