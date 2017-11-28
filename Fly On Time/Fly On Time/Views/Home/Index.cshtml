@@ -61,10 +61,11 @@
     <div id="accordion1" class="accordion">
         <h3>Guidance To Airport</h3>
         <div class="mapContainer">
-            <div style="padding-bottom: 0; margin-left: 14%;"><strong>Travel Time Estimation: </strong><span id="dDuration0"></span> </div>
-            <div style="height:360px; width: 100%;">
+            <div class="lowVertMargins centerText"><strong>Travel Time Estimation: </strong><span id="dDuration0"></span> </div>
+            <div class="mapSize" style="">
                 <div id="map"></div>
             </div>
+            <div class="lowVertMargins centerText"><span id="directionsButton0" class="btn btn-default">Click for turn-by-turn directions</span></div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -156,10 +157,11 @@
     <div id="accordion2" class="accordion">
         <h3>Guidance To Airport</h3>
         <div class="mapContainer">
-            <div style="padding-bottom: 0; margin-left: 14%;"><strong>Travel Time Estimation: </strong><span id="dDuration1"></span> </div>
-            <div style="height:360px; width: 100%;">
+            <div class="lowVertMargins centerText"><strong>Travel Time Estimation: </strong><span id="dDuration1"></span> </div>
+            <div class="mapSize">
                 <div id="map2"></div>
             </div>
+            <div class="lowVertMargins centerText"><span id="directionsButton1" class="btn btn-default">Click for turn-by-turn directions</span></div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -294,14 +296,14 @@
 
             $('#modalButton1').html('')
             $('#modalButton2').html('')
-            $('#modalButton1').append(info.appendix.airports[0].name + ' to ' + info.appendix.airports[1].name)
-            $('#modalButton2').append(info.appendix.airports[1].name + ' to ' + info.appendix.airports[0].name)
+            $('#modalButton1').append(info.appendix.airports[1].name + ' to ' + info.appendix.airports[0].name)
+            $('#modalButton2').append(info.appendix.airports[0].name + ' to ' + info.appendix.airports[1].name)
 
             $('#tab1Text').html('')
             $('#tab2Text').html('')
 
-            $('#tab1Text').append(info.appendix.airports[0].fs + ' to ' + info.appendix.airports[1].fs)
-            $('#tab2Text').append(info.appendix.airports[1].fs + ' to ' + info.appendix.airports[0].fs)
+            $('#tab1Text').append(info.appendix.airports[1].fs + ' to ' + info.appendix.airports[0].fs)
+            $('#tab2Text').append(info.appendix.airports[0].fs + ' to ' + info.appendix.airports[1].fs)
 
             $('#dName' + index).html('');
             $('#dDate' + index).html('');
@@ -521,9 +523,10 @@
             $.get("/Home/getTravelEstimation", coordinates, function (data, textStatus, XQHR) {
                 var jsonData = JSON.parse(data);
                 var durationInSeconds = jsonData.rows[0].elements[0].duration.value;
-                var date = new Date(null);
-                date.setSeconds(durationInSeconds);
-                var durationConverted = date.getHours() + ' h ' + date.getMinutes() + ' min';
+                var minutes = Math.floor(durationInSeconds / 60);
+                var hours = Math.floor(durationInSeconds/3600)
+                var leftoverMinutes = minutes % 60;
+                var durationConverted = hours + ' h ' + leftoverMinutes + ' min';
                 $('#' + type + 'Duration' + index).html('');
                 $('#' + type + 'Duration' + index).append(durationConverted);
 
@@ -581,6 +584,14 @@
             $('#hideAccordion1').hide();
             $('#hideAccordion2').show();
             $('#flightModal').modal('toggle');
+        });
+
+        $('body').on('click', '#directionsButton0', function () {
+            window.open("https://www.google.com/maps/dir/?api=1&destination="+destinationLocation2.lat + "%2C" + destinationLocation2.lng)
+        });
+
+        $('body').on('click', '#directionsButton1', function () {
+            window.open("https://www.google.com/maps/dir/?api=1&destination="+destinationLocation1.lat + "%2C" + destinationLocation1.lng)
         });
 
         var activateGoogleMaps = function () {

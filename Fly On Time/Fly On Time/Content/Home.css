@@ -2,6 +2,23 @@
     background-color: #222222;
 }
 
+.lowVertMargins {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+.mapSize {
+    height:300px; 
+    width: 100%; 
+    padding-bottom: 0 !important; 
+    padding-top: 0 !important;
+}
+.centerText {
+    text-align: center;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
 
 .whiteText {
     color: white;
@@ -10,6 +27,7 @@
 hr {
     border-top: 1px solid #080808 !important;
 }
+
 #dropDownButton {
     border-top: #080808 1px solid;
     padding-left: 47%;
@@ -21,6 +39,7 @@ hr {
     color: white;
     font-size: 23px;
 }
+
 #fsScheduleInputs {
     margin-top: 20px;
 }
@@ -40,13 +59,16 @@ hr {
 #modalButton2 {
     margin-top: 15px;
 }
+
 .close {
     color: white;
 }
+
 .modal-content {
     background-color: #222222;
     color: white;
 }
+
 .btn-lg {
     white-space: normal;
 }
@@ -64,6 +86,7 @@ hr {
     justify-content: center;
     cursor: pointer;
 }
+
 .tabText {
     margin-top: 7px;
 }
@@ -103,12 +126,15 @@ a {
 .accordion {
     margin: 50px auto;
 }
+
 #hideAccordion1, #hideAccordion2 {
     display: none;
 }
+
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
     background-color: #6d6d6d !important;
 }
+
 .accordion .ui-accordion-content {
     width: 100%;
     background-color: #f3f3f3;
@@ -121,6 +147,7 @@ a {
         margin: 0;
         padding: 20px;
     }
+
     .accordion .ui-accordion-content a {
         color: #777;
     }
@@ -129,21 +156,22 @@ a {
     background-color: #ccc;
     margin: 0px;
 }
-    .accordion .ui-accordion-header {
-        color: #fff;
-        line-height: 42px;
-        display: block;
-        font-size: 16pt;
-        width: 100%;
-        text-indent: 10px;
-    }
-  
-        .accordion .ui-accordion-header {
-            background-color: #777777;
-            color: lightgrey;
-        }
 
-      
+.accordion .ui-accordion-header {
+    color: #fff;
+    line-height: 42px;
+    display: block;
+    font-size: 16pt;
+    width: 100%;
+    text-indent: 10px;
+}
+
+.accordion .ui-accordion-header {
+    background-color: #777777;
+    color: lightgrey;
+}
+
+
     .accordion .ui-accordion-header a {
         text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
         text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
@@ -180,7 +208,8 @@ a {
 #dWeatherImage0, #dWeatherImage1, #aWeatherImage0, #aWeatherImage1 {
     margin-top: 20px;
 }
-.sunny { 
+
+.sunny {
     width: 80px;
     height: 80px;
     background: url('Images/weathericons-sm.jpg') -75px -75px;
