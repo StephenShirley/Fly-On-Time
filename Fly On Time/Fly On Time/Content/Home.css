@@ -73,6 +73,14 @@ hr {
     white-space: normal;
 }
 
+/*Delay Index*/
+.delayIndexScore {
+    position: absolute;
+    top: 43px;
+    margin-left: 10px;
+    color: black !important;
+}
+
 /*Tab Styling*/
 .bar {
     padding-left: 15px;
@@ -132,7 +140,7 @@ a {
 }
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-    background-color: #6d6d6d !important;
+    border: 1px solid #6d6d6d !important;
 }
 
 .accordion .ui-accordion-content {

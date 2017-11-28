@@ -94,6 +94,13 @@
                     <p><strong>Terminal</strong></p>
                     <p id="dTerminal0"></p>
                 </div>
+                <div class="col-md-4 col-xs-12">
+                    <p><strong>Delay Index</strong></p>
+                    <div id="delayIndexContainer">
+                        <img width="280" height="43" src="~/Content/Images/delay-index-background.png" />
+                        <div id="dDelayIndexScore0" class="delayIndexScore">1</div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-4 col-xs-5">
@@ -136,6 +143,13 @@
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Baggage</strong></p>
                     <p id="aBaggage0"></p>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <p><strong>Delay Index</strong></p>
+                    <div id="delayIndexContainer">
+                        <img width="280" height="43" src="~/Content/Images/delay-index-background.png" />
+                        <div id="aDelayIndexScore0" class="delayIndexScore">1</div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -190,6 +204,13 @@
                     <p><strong>Terminal</strong></p>
                     <p id="dTerminal1"></p>
                 </div>
+                <div class="col-md-4 col-xs-12">
+                    <p><strong>Delay Index</strong></p>
+                    <div id="delayIndexContainer">
+                        <img width="280" height="43" src="~/Content/Images/delay-index-background.png" />
+                        <div id="dDelayIndexScore1" class="delayIndexScore">1</div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-4 col-xs-5">
@@ -232,6 +253,13 @@
                 <div class="col-md-4 col-xs-12">
                     <p><strong>Baggage</strong></p>
                     <p id="aBaggage1"></p>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <p><strong>Delay Index</strong></p>
+                    <div id="delayIndexContainer">
+                        <img width="280" height="43" src="~/Content/Images/delay-index-background.png" />
+                        <div id="aDelayIndexScore1" class="delayIndexScore">1</div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -294,6 +322,7 @@
             //Check that there is actually info
             var airportResources = info.flightStatuses[index] == undefined ? undefined : info.flightStatuses[0].airportResources;
 
+
             $('#modalButton1').html('')
             $('#modalButton2').html('')
             $('#modalButton1').append(info.appendix.airports[1].name + ' to ' + info.appendix.airports[0].name)
@@ -324,6 +353,8 @@
             if (airportResources !== undefined) {
                 //Departure Airport
 
+                getDelayIndexByShortCode(info.flightStatuses[index].departureAirportFsCode, 'd', index);
+                getDelayIndexByShortCode(info.flightStatuses[index].arrivalAirportFsCode, 'a', index);
 
                 $('#dDate' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc).toDateString())
                 $('#dGateSchedTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc).toTimeString())
@@ -381,10 +412,25 @@
             }
         }
 
+        var getDelayIndexByShortCode = function (sc, type, index) {
+            $.get("/Home/getFlightDelayIndexByAirport",{airportCode: sc}, function (data, textStatus, XQHR) {
+                console.log("Flight status: " + data);
+                var jsonData = JSON.parse(data);
+                score = jsonData.delayIndexes[0].normalizedScore;
+                $('#' + type + 'DelayIndexScore' + index).html('<strong>' + score + '</strong>')
+                leftMargin = score * 56
+                $('#' + type + 'DelayIndexScore' + index).css('left', leftMargin)
+
+            }).error(function (data, text) {
+                console.log(data);
+            });
+        }
+
         var getFlightStatus = function (input) {
             $.get("/Home/getFlightStatus", input, function (data, textStatus, XQHR) {
                 //console.log("Flight status: " + data);
                 var jsonData = JSON.parse(data);
+
 
                 displayStatusInfo(jsonData, 0);
                 displayStatusInfo(jsonData, 1);
@@ -524,7 +570,7 @@
                 var jsonData = JSON.parse(data);
                 var durationInSeconds = jsonData.rows[0].elements[0].duration.value;
                 var minutes = Math.floor(durationInSeconds / 60);
-                var hours = Math.floor(durationInSeconds/3600)
+                var hours = Math.floor(durationInSeconds / 3600)
                 var leftoverMinutes = minutes % 60;
                 var durationConverted = hours + ' h ' + leftoverMinutes + ' min';
                 $('#' + type + 'Duration' + index).html('');
@@ -587,11 +633,11 @@
         });
 
         $('body').on('click', '#directionsButton0', function () {
-            window.open("https://www.google.com/maps/dir/?api=1&destination="+destinationLocation2.lat + "%2C" + destinationLocation2.lng)
+            window.open("https://www.google.com/maps/dir/?api=1&destination=" + destinationLocation2.lat + "%2C" + destinationLocation2.lng)
         });
 
         $('body').on('click', '#directionsButton1', function () {
-            window.open("https://www.google.com/maps/dir/?api=1&destination="+destinationLocation1.lat + "%2C" + destinationLocation1.lng)
+            window.open("https://www.google.com/maps/dir/?api=1&destination=" + destinationLocation1.lat + "%2C" + destinationLocation1.lng)
         });
 
         var activateGoogleMaps = function () {

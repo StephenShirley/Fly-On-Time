@@ -79,6 +79,15 @@ namespace Fly_On_Time.Utilities {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/.
+        /// </summary>
+        internal static string fsDelayIndex {
+            get {
+                return ResourceManager.GetString("fsDelayIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/.
         /// </summary>
         internal static string fsFlightStatusByArrivalDate {

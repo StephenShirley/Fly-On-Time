@@ -77,5 +77,14 @@ namespace Fly_On_Time.Controllers
             return Json(information, JsonRequestBehavior.AllowGet);   
         }
 
+        public JsonResult getFlightDelayIndexByAirport(string airportCode)
+        {
+            string requestUrl = ApiKeys.fsDelayIndex + airportCode + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey;
+
+            WebClient client = new WebClient();
+            string information = client.DownloadString(requestUrl);
+
+            return Json(information, JsonRequestBehavior.AllowGet);
+        }
     }
 }
