@@ -65,7 +65,9 @@
             <div class="mapSize" style="">
                 <div id="map"></div>
             </div>
-            <div class="lowVertMargins centerText"><span id="directionsButton0" class="btn btn-default">Click for turn-by-turn directions</span></div>
+            <div class="lowVertMargins centerText"><span id="directionsButton0" class="btn btn-default">Click for turn-by-turn directions</span>
+			<span id="parkingButton0" class="btn btn-default">Click for Airport Parking Options</span>
+			</div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -175,7 +177,9 @@
             <div class="mapSize">
                 <div id="map2"></div>
             </div>
-            <div class="lowVertMargins centerText"><span id="directionsButton1" class="btn btn-default">Click for turn-by-turn directions</span></div>
+            <div class="lowVertMargins centerText"><span id="directionsButton1" class="btn btn-default">Click for turn-by-turn directions</span>
+            <span id="parkingButton1" class="btn btn-default">Click for Airport Parking Options</span>
+			</div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -581,7 +585,7 @@
             });
         }
 
-
+	
         //PAGE EVENTS
         $('body').on('click', '#submitBtn', function () {
             getFlightSchedule();
@@ -600,6 +604,8 @@
             $('#hideAccordion1').slideUp();
             $('#tabBox').hide();
         });
+
+	    
 
 
         $('body').on('click', '#tab1', function () {
@@ -638,6 +644,14 @@
 
         $('body').on('click', '#directionsButton1', function () {
             window.open("https://www.google.com/maps/dir/?api=1&destination=" + destinationLocation1.lat + "%2C" + destinationLocation1.lng)
+        });
+
+	    $('body').on('click', '#parkingButton0', function () {
+            window.open("https://www.google.com/maps/search/airport%20parking/%40" + destinationLocation2.lat + "," + destinationLocation2.lng + ",10z")
+	    });
+
+	    $('body').on('click', '#parkingButton1', function () {
+            window.open("https://www.google.com/maps/search/airport%20parking/%40" + destinationLocation1.lat + "," + destinationLocation1.lng + ",10z")
         });
 
         var activateGoogleMaps = function () {
