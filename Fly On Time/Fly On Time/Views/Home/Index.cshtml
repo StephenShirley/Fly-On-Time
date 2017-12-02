@@ -5,6 +5,8 @@
 <script src="~/Scripts/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="~/Scripts/bootstrap-datepicker.js"></script>
 <link href="~/Scripts/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/toastr.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
 <link href="~/Content/Home.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet" />
 
@@ -35,7 +37,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="fsScheduleFN">Flight Number</label>
-                <input type="text" id="fsScheduleFN" class="form-control" value="323" placeholder="Flight Number">
+                <input type="number" id="fsScheduleFN" class="form-control" value="323" placeholder="Flight Number">
             </div>
         </div>
         <div class="col-md-4">
@@ -65,9 +67,10 @@
             <div class="mapSize" style="">
                 <div id="map"></div>
             </div>
-            <div class="lowVertMargins centerText"><span id="directionsButton0" class="btn btn-default">Click for turn-by-turn directions</span>
-			<span id="parkingButton0" class="btn btn-default">Click for Airport Parking Options</span>
-			</div>
+            <div class="lowVertMargins centerText">
+                <span id="directionsButton0" class="btn btn-default">Click for turn-by-turn directions</span>
+                <span id="parkingButton0" class="btn btn-default">Click for Airport Parking Options</span>
+            </div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -177,9 +180,10 @@
             <div class="mapSize">
                 <div id="map2"></div>
             </div>
-            <div class="lowVertMargins centerText"><span id="directionsButton1" class="btn btn-default">Click for turn-by-turn directions</span>
-            <span id="parkingButton1" class="btn btn-default">Click for Airport Parking Options</span>
-			</div>
+            <div class="lowVertMargins centerText">
+                <span id="directionsButton1" class="btn btn-default">Click for turn-by-turn directions</span>
+                <span id="parkingButton1" class="btn btn-default">Click for Airport Parking Options</span>
+            </div>
         </div>
         <h3>Departure Airport Information</h3>
         <div>
@@ -296,8 +300,7 @@
 
     $.getScript("/Scripts/jquery-ui-1.12.1.custom/jquery-ui.js", function () {
         //#region DISPLAY FUNCTIONS
-        var constructLayout = function (flights, flightInfo) {
-            var flightObj = JSON.parse(flights);
+        var constructLayout = function (flightObj, flightInfo) {
             var departureAirport = flightObj.appendix.airports[0];
             var arrivalAirport = flightObj.appendix.airports[1];
 
@@ -368,10 +371,12 @@
                 $.each(info.appendix.airports, function (i, v) {
                     if (v.fs == info.flightStatuses[index].departureAirportFsCode) {
                         $('#dName' + index).append(v.fs + " - " + v.name);
-                        destinationLocation1 = {
-                            lat: v.latitude,
-                            lng: v.longitude
-                        };
+                        if (index == 0) {
+                            destinationLocation1 = {
+                                lat: v.latitude,
+                                lng: v.longitude
+                            };
+                        }
                         displayWeatherInfoForAirport(v.fs, 'd', index)
                     }
                 });
@@ -389,10 +394,12 @@
                 $.each(info.appendix.airports, function (i, v) {
                     if (v.fs == info.flightStatuses[index].arrivalAirportFsCode) {
                         $('#aName' + index).append(v.fs + " - " + v.name);
-                        destinationLocation2 = {
-                            lat: v.latitude,
-                            lng: v.longitude
-                        };
+                        if (index == 0) {
+                            destinationLocation2 = {
+                                lat: v.latitude,
+                                lng: v.longitude
+                            };
+                        }
                         displayWeatherInfoForAirport(v.fs, 'a', index)
                     }
                 });
@@ -417,7 +424,7 @@
         }
 
         var getDelayIndexByShortCode = function (sc, type, index) {
-            $.get("/Home/getFlightDelayIndexByAirport",{airportCode: sc}, function (data, textStatus, XQHR) {
+            $.get("/Home/getFlightDelayIndexByAirport", { airportCode: sc }, function (data, textStatus, XQHR) {
                 console.log("Flight status: " + data);
                 var jsonData = JSON.parse(data);
                 score = jsonData.delayIndexes[0].normalizedScore;
@@ -452,16 +459,52 @@
             var month = fullDate.substr(0, 2);
             var day = fullDate.substr(3, 2);
             var year = fullDate.substr(6, 4);
-            var output = { airCode: airCode, fn: fn, year: year, month: month, day: day };
 
-            $.get("/Home/getFlightSchedule", output, function (data, textStatus, XQHR) {
-                constructLayout(data, output);
+            if (airCode === '') {
+                toastr.warning('You must enter an aircode');
+            }
+            if (fn === '') {
+                toastr.warning('You must enter a flight number');
+            }
+            if (fullDate === '') {
+                toastr.warning('You must enter a full departure date');
+            }
+            if (airCode !== '' && fn !== '' && fullDate !== '') {
+                var output = { airCode: airCode, fn: fn, year: year, month: month, day: day };
 
+                $.get("/Home/getFlightSchedule", output, function (data, textStatus, XQHR) {
+                    var flightObj = JSON.parse(data);
+                    if (flightObj.error != undefined) {
+                        if (flightObj.error.errorCode === 'BAD_AIRLINE_CODE') {
+                            toastr.warning('The given airline code is not valid');
+                        }
+                        if (flightObj.error.errorCode === 'BAD_FLIGHT_NUMBER') {
+                            toastr.warning('The given flight number is not valid');
+                        }
+                        if (flightObj.error.errorCode === 'DATE_OUT_OF_RANGE') {
+                            toastr.warning('The given flight number is not valid');
+                        }
 
-            }).error(function (data, text) {
-                console.log(data);
-            });
+                    }
+                    if (flightObj.scheduledFlights.length == 0) {
+                        toastr.warning('There are no flights for the specified inputs');
+                    }
+                    else {
+                        constructLayout(flightObj, output);
 
+                        if (flightObj.scheduledFlights.length > 1) {
+                            $('#tabBox').show();
+                            $('#flightModal').modal('toggle');
+                        }
+                            $('#fsScheduleInputs').slideUp();
+                            $('#dropDownButton').slideDown();
+
+                    }
+
+                }).error(function (data, text) {
+                    console.log(data);
+                });
+            }
         }
 
         var displayWeatherInfoForAirport = function (airportCode, type, index) {
@@ -585,15 +628,10 @@
             });
         }
 
-	
+
         //PAGE EVENTS
         $('body').on('click', '#submitBtn', function () {
             getFlightSchedule();
-            $('#fsScheduleInputs').slideUp();
-            $('#dropDownButton').slideDown();
-            $('#tabBox').show();
-
-            $('#flightModal').modal('toggle');
             //$('#flightModal').modal('toggle');
         });
 
@@ -605,7 +643,7 @@
             $('#tabBox').hide();
         });
 
-	    
+
 
 
         $('body').on('click', '#tab1', function () {
@@ -646,19 +684,19 @@
             window.open("https://www.google.com/maps/dir/?api=1&destination=" + destinationLocation1.lat + "%2C" + destinationLocation1.lng)
         });
 
-	    $('body').on('click', '#parkingButton0', function () {
+        $('body').on('click', '#parkingButton0', function () {
             window.open("https://www.google.com/maps/search/airport%20parking/%40" + destinationLocation2.lat + "," + destinationLocation2.lng + ",10z")
-	    });
+        });
 
-	    $('body').on('click', '#parkingButton1', function () {
+        $('body').on('click', '#parkingButton1', function () {
             window.open("https://www.google.com/maps/search/airport%20parking/%40" + destinationLocation1.lat + "," + destinationLocation1.lng + ",10z")
         });
 
         var activateGoogleMaps = function () {
-            initMap('map', destinationLocation2, destinationLocation2.lat, destinationLocation2.lng, 0);
+            initMap('map', destinationLocation1, destinationLocation1.lat, destinationLocation1.lng, 0);
         }
         var activateGoogleMaps2 = function () {
-            initMap('map2', destinationLocation1, destinationLocation1.lat, destinationLocation1.lng, 1);
+            initMap('map2', destinationLocation2, destinationLocation2.lat, destinationLocation2.lng, 1);
         }
     });
 </script>
