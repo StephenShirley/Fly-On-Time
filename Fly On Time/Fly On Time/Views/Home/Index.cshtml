@@ -123,50 +123,45 @@
         <h3>Arrival Airport Information</h3>
         <div>
             <div class="flexBox">
-                <div class="col-md-6 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Arriving</strong></p>
                     <p id="aName0"></p>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <div class="flexItem">
                     <p><strong>On</strong></p>
                     <p id="aDate0"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Terminal</strong></p>
                     <p id="aTerminal0"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Arrival Gate</strong></p>
                     <p id="aGate0"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Baggage</strong></p>
                     <p id="aBaggage0"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Scheduled</strong></p>
                     <p id="aGateSchedTime0"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Estimated</strong></p>
                     <p id="aGateEstTime0"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
-                    <p><strong>Delay Index</strong></p>
-                    <div class="delayIndexContainer">
-                        <img width="280" height="43" src="~/Content/Images/delay-index-background.png" />
-                        <div id="aDelayIndexScore0" class="delayIndexScore">1</div>
+                <div class="flexItem weatherItem">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-4">
+                            <p><strong>Weather</strong></p>
+                            <p id="aWeather0"></p>
+                            <span id="aTemp0"></span>F
+                        </div>
+                        <div class="col-md-4 col-xs-6">
+                            <img id="aWeatherImage0" class="hidden" src="~/Content/Images/img_trans.gif" />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-xs-5">
-                    <p><strong>Weather</strong></p>
-                    <p id="aWeather0"></p>
-                    <span id="aTemp0"></span>F
-                </div>
-                <div class="col-md-4 col-xs-6">
-                    <img id="aWeatherImage0" class="hidden" src="~/Content/Images/img_trans.gif" />
                 </div>
             </div>
         </div>
@@ -189,111 +184,109 @@
         </div>
         <h3>Departure Airport Information</h3>
         <div>
-            <div class="row">
-                <div class="col-md-6 col-xs-12">
+            <div class="flexBox">
+                <div class="flexItem">
                     <p><strong>Departing</strong></p>
                     <p id="dName1"></p>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <div class="flexItem">
                     <p><strong>On</strong></p>
                     <p id="dDate1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Departure Gate</strong></p>
                     <p id="dGate1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Scheduled</strong></p>
                     <p id="dGateSchedTime1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Estimated</strong></p>
                     <p id="dGateEstTime1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Terminal</strong></p>
                     <p id="dTerminal1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem delayItem">
                     <p><strong>Delay Index</strong></p>
                     <div class="delayIndexContainer">
                         <img width="280" height="43" src="~/Content/Images/delay-index-background.png" />
                         <div id="dDelayIndexScore1" class="delayIndexScore">1</div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-xs-5">
-                    <p><strong>Weather</strong></p>
-                    <p id="dWeather1"></p>
-                    <span id="dTemp1"></span>F
-                </div>
-                <div class="col-md-4 col-xs-6">
-                    <img id="dWeatherImage1" class="hidden" src="~/Content/Images/img_trans.gif" />
+                <div class="flexItem weatherItem">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-4">
+                            <p><strong>Weather</strong></p>
+                            <p id="dWeather1"></p>
+                            <span id="dTemp1"></span>F
+                        </div>
+                        <div class="col-md-4 col-xs-6">
+                            <img id="dWeatherImage1" class="hidden" src="~/Content/Images/img_trans.gif" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <h3>Arrival Airport Information</h3>
         <div>
-            <div class="row">
-                <div class="col-md-6 col-xs-12">
+            <div class="flexBox">
+                <div class="flexItem">
                     <p><strong>Arriving</strong></p>
                     <p id="aName1"></p>
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <div class="flexItem">
                     <p><strong>On</strong></p>
                     <p id="aDate1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Arrival Gate</strong></p>
                     <p id="aGate1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Scheduled</strong></p>
                     <p id="aGateSchedTime1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Estimated</strong></p>
                     <p id="aGateEstTime1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Terminal</strong></p>
                     <p id="aTerminal1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
+                <div class="flexItem">
                     <p><strong>Baggage</strong></p>
                     <p id="aBaggage1"></p>
                 </div>
-                <div class="col-md-4 col-xs-12">
-                    <p><strong>Delay Index</strong></p>
-                    <div class="delayIndexContainer">
-                        <img width="280" height="43" src="~/Content/Images/delay-index-background.png" />
-                        <div id="aDelayIndexScore1" class="delayIndexScore">1</div>
+                <div class="flexItem weatherItem">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-4">
+                            <p><strong>Weather</strong></p>
+                            <p id="aWeather1"></p>
+                            <span id="aTemp1"></span>F
+                        </div>
+                        <div class="col-md-4 col-xs-6">
+                            <img id="aWeatherImage1" class="hidden" src="~/Content/Images/img_trans.gif" />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-xs-5">
-                    <p><strong>Weather</strong></p>
-                    <p id="aWeather1"></p>
-                    <span id="aTemp1"></span>F
-                </div>
-                <div class="col-md-4 col-xs-6">
-                    <img id="aWeatherImage1" class="hidden" src="~/Content/Images/img_trans.gif" />
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 
 
 
 <script>
+    //Initialize datepicker
     $('.datepicker').datepicker({
         orientation: 'bottom',
-        startDate: '-3d',
+        startDate: '-4d',
+        endDate: '+2d',
         autoclose: true
     });
     $('.datepicker').datepicker('setDate', 'now');
@@ -303,9 +296,6 @@
     $.getScript("/Scripts/jquery-ui-1.12.1.custom/jquery-ui.js", function () {
         //#region DISPLAY FUNCTIONS
         var constructLayout = function (flightObj, flightInfo) {
-            var departureAirport = flightObj.appendix.airports[0];
-            var arrivalAirport = flightObj.appendix.airports[1];
-
             $('#hideAccordion1').slideDown();
             $("#accordion1").accordion({
                 collapsible: true,
@@ -319,7 +309,6 @@
                 activate: activateGoogleMaps2,
                 heightStyle: "content"
             });
-            //console.log(flights);
 
             flightInfo.airportSC = flightObj.scheduledFlights.departureAirportFsCode;
             getFlightStatus(flightInfo);
@@ -330,7 +319,6 @@
         var displayStatusInfo = function (info, index) {
             //Check that there is actually info
             var airportResources = info.flightStatuses[index] == undefined ? undefined : info.flightStatuses[0].airportResources;
-
 
             $('#modalButton1').html('')
             $('#modalButton2').html('')
@@ -363,14 +351,16 @@
                 //Departure Airport
 
                 getDelayIndexByShortCode(info.flightStatuses[index].departureAirportFsCode, 'd', index);
-                getDelayIndexByShortCode(info.flightStatuses[index].arrivalAirportFsCode, 'a', index);
-                getTSACheckpoints(info.flightStatuses[index].departureAirportFsCode);
 
                 $('#dDate' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc).toDateString())
                 $('#dGateSchedTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateDeparture.dateUtc).toTimeString())
-                $('#dGateEstTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.estimatedGateDeparture.dateUtc).toTimeString())
-                $('#dGate' + index).append(airportResources.departureGate)
-                $('#dTerminal' + index).append(airportResources.departureTerminal)
+                if (info.flightStatuses[index].operationalTimes.estimatedGateDeparture != undefined)
+                    $('#dGateEstTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.estimatedGateDeparture.dateUtc).toTimeString())
+                else
+                    $('#dGateEstTime' + index).append("N/A");
+
+                $('#dGate' + index).append(airportResources.departureGate === undefined ? "N/A" : airportResources.departureGate)
+                $('#dTerminal' + index).append(airportResources.departureTerminal === undefined ? "N/A" : airportResources.departureTerminal)
                 $.each(info.appendix.airports, function (i, v) {
                     if (v.fs == info.flightStatuses[index].departureAirportFsCode) {
                         $('#dName' + index).append(v.fs + " - " + v.name);
@@ -389,10 +379,13 @@
 
                 $('#aDate' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateArrival.dateUtc).toDateString())
                 $('#aGateSchedTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.scheduledGateArrival.dateUtc).toTimeString())
-                $('#aGateEstTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.estimatedGateArrival.dateUtc).toTimeString())
-                $('#aTerminal' + index).append(airportResources.arrivalTerminal)
-                $('#aGate' + index).append(airportResources.arrivalGate)
-                $('#aBaggage' + index).append(airportResources.baggage)
+                if (info.flightStatuses[index].operationalTimes.estimatedGateArrival != undefined)
+                    $('#aGateEstTime' + index).append(new Date(info.flightStatuses[index].operationalTimes.estimatedGateArrival.dateUtc).toTimeString());
+                else
+                    $('#aGateEstTime' + index).append("N/A");
+                $('#aTerminal' + index).append(airportResources.arrivalTerminal === undefined ? "N/A" : airportResources.arrivalTerminal)
+                $('#aGate' + index).append(airportResources.arrivalGate === undefined ? "N/A": airportResources.arrivalGate)
+                $('#aBaggage' + index).append(airportResources.baggage === undefined ? "N/A" : airportResources.baggage)
                 $.each(info.appendix.airports, function (i, v) {
                     if (v.fs == info.flightStatuses[index].arrivalAirportFsCode) {
                         $('#aName' + index).append(v.fs + " - " + v.name);

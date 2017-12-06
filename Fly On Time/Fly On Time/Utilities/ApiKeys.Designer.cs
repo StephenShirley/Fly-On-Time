@@ -140,23 +140,5 @@ namespace Fly_On_Time.Utilities {
                 return ResourceManager.GetString("googleMapsAppURL", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to a9aafe4f64307f90dce219c912158410.
-        /// </summary>
-        internal static string owmAppKey {
-            get {
-                return ResourceManager.GetString("owmAppKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://api.openweathermap.org.
-        /// </summary>
-        internal static string owmAppURL {
-            get {
-                return ResourceManager.GetString("owmAppURL", resourceCulture);
-            }
-        }
     }
 }

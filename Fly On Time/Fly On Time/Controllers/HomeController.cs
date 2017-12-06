@@ -12,7 +12,6 @@ namespace Fly_On_Time.Controllers
     {
         public ActionResult Index()
         {
-
             return View();
         }
 
@@ -33,17 +32,6 @@ namespace Fly_On_Time.Controllers
 
             WebClient client = new WebClient();
             string information = client.DownloadString(requestUrl); 
-            return Json(information, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult getWeatherByCoordinates(string latitude, string longitude)
-        {
-            string requestUrl = ApiKeys.owmAppURL + "/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + ApiKeys.owmAppKey + "&units=imperial";
-            //requestUrl = System.Web.HttpUtility.UrlEncode(requestUrl);
-
-            WebClient client = new WebClient();
-            string information = client.DownloadString(requestUrl);
-
             return Json(information, JsonRequestBehavior.AllowGet);
         }
 
