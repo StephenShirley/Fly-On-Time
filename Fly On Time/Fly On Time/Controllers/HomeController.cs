@@ -16,14 +16,6 @@ namespace Fly_On_Time.Controllers
             return View();
         }
 
-        public JsonResult getTsaCheckpoint(string shortcode)
-        {
-            WebClient client = new WebClient();
-            string information = client.DownloadString("http://apps.tsa.dhs.gov/mytsawebservice/GetAirportCheckpoints.ashx?ap=" + shortcode);
-
-            return Json(information, JsonRequestBehavior.AllowGet);
-        }
-
         public JsonResult getFlightSchedule(string airCode, string fn, string year, string month, string day)
         {
             string requestUrl = ApiKeys.fsScheduledFlightsByCarrierFNDate + airCode + "/" + fn + "/departing/" + year + "/" + month + "/" + day + "?appId=" + ApiKeys.fsAppID + "&appKey=+" + ApiKeys.fsAppKey;

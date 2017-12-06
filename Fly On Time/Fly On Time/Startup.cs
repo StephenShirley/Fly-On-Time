@@ -8,7 +8,6 @@ namespace Fly_On_Time
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
         }
     }
 }

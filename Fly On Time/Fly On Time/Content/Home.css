@@ -8,12 +8,54 @@
     padding-top: 5px !important;
     padding-bottom: 5px !important;
 }
+
+/*Flexbox magic*/
+
+.flexBox {
+    display: flex;
+    height: auto;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.flexItem {
+    margin: auto;
+    width: 275px;
+    height: 100px;
+}
+
 .mapSize {
-    height:300px; 
-    width: 100%; 
-    padding-bottom: 0 !important; 
+    height: 450px;
+    width: 100%;
+    padding-bottom: 0 !important;
     padding-top: 0 !important;
 }
+
+@media (max-width: 762px) {
+    .flexBox {
+        justify-content: flex-start;
+    }
+
+    .flexItem {
+        margin: auto;
+        height: 80px;
+    }
+    .weatherItem {
+        height: 100px;
+    }
+    .delayItem {
+        height: 100px;
+    }
+    .mapSize {
+            height: 270px;
+    }
+}
+
+.delayIndexContainer {
+    position: relative;
+}
+
+
 .centerText {
     text-align: center;
     margin-left: auto !important;
@@ -24,13 +66,19 @@
     color: white;
 }
 
+.modal-content {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+
+}
+
 hr {
     border-top: 1px solid #080808 !important;
 }
 
 #dropDownButton {
     border-top: #080808 1px solid;
-    padding-left: 47%;
+    text-align: center;
     cursor: pointer;
     display: none;
 }
@@ -59,6 +107,9 @@ hr {
 #modalButton2 {
     margin-top: 15px;
 }
+#modalButton1, #modalButton2 {
+    background-color: white !important;
+}
 
 .close {
     color: white;
@@ -76,8 +127,8 @@ hr {
 /*Delay Index*/
 .delayIndexScore {
     position: absolute;
-    top: 43px;
-    margin-left: 10px;
+    top: 12px;
+    margin-left: -5px;
     color: black !important;
 }
 
@@ -211,6 +262,12 @@ a {
     padding-right: 0 !important;
 }
 
+@media (min-width: 762px) {
+    .mapContainer {
+        height: 555px;
+    }
+
+}
 
 /*Weather Image Styling*/
 #dWeatherImage0, #dWeatherImage1, #aWeatherImage0, #aWeatherImage1 {
